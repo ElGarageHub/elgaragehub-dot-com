@@ -304,8 +304,19 @@ h2 {
   font-size: 225%;
 }
 
+@media(min-width: 450px) {
+  .info {
+    max-width: 400px;
+  }
+}
+
+@media(max-width: 450px) {
+  .info {
+    max-width: 90%;
+  }
+}
+
 .info {
-  max-width: 400px;
   margin-right: auto;
   margin-left: auto;
   color: rgb(86, 86, 86);
@@ -392,8 +403,19 @@ h3 {
   font-size: 225%;
 }
 
+@media(min-width: 850px) {
+  .caption {
+    max-width: 800px;
+  }
+}
+
+@media(max-width: 850px) {
+  .caption {
+    max-width: 90%;
+  }
+}
+
 .caption {
-  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   text-align: justify;
@@ -670,13 +692,31 @@ button:focus, input:focus, textarea:focus {
   text-align: center;
 }
 
+@media(min-width: 992px) {
+  .carousel .slide {
+    width: 40%;
+  }
+
+  .carousel {
+    height: 30vw;
+  }
+}
+
+@media(max-width: 992px) {
+  .carousel .slide {
+    width: 90%;
+  }
+
+  .carousel {
+    height: 68vw;
+  }
+}
+
 .carousel .slide {
-  width: 40%;
   vertical-align: middle;
 }
 
 .carousel {
-  height: 30vw;
   vertical-align: middle;
 }
 
