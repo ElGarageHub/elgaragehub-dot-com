@@ -70,7 +70,6 @@ function moveIndustrialBG() {
   }
 }
 
-//TODO: La imagen también puede escalarse por altura.
 function getMaxMoveEdu() {
   var realH = eduIndImgH
     * (removePx(window.getComputedStyle($('.educativo')[0],null).width))
@@ -80,7 +79,6 @@ function getMaxMoveEdu() {
     )) - 5;
 }
 
-//TODO: La imagen también puede escalarse por altura.
 function getMaxMoveInd() {
   var realH = eduIndImgH
     * (removePx(window.getComputedStyle($('.industrial')[0],null).width))
