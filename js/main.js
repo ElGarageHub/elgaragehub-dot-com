@@ -9,29 +9,30 @@ function removePx(str) {
   return parseInt(str.substring(0,str.length-2));
 }
 
-document.body.onload = function() {
-  var cols = $('.column');
-  var max = Math.max(
-    removePx(window.getComputedStyle($('.column')[1],null).height),
-    removePx(window.getComputedStyle($('.column')[0],null).height));
-  cols.forEach(function(el) {
-    el.style.height = max + "px";
+var columns = ['.column', '.column2', '.column3'];
+function equalizeColH() {
+  columns.forEach(function(c) {
+    var cols = $(c);
+    var max = Math.max(
+      removePx(window.getComputedStyle($(c)[1],null).height),
+      removePx(window.getComputedStyle($(c)[0],null).height));
+    cols.forEach(function(el) {
+      el.style.height = max + "px";
+    });
   });
-  cols = $('.column2');
-  max = Math.max(
-    removePx(window.getComputedStyle($('.column2')[1],null).height),
-    removePx(window.getComputedStyle($('.column2')[0],null).height));
-  cols.forEach(function(el) {
-    el.style.height = max + "px";
-  });
-  cols = $('.column3');
-  max = Math.max(
-    removePx(window.getComputedStyle($('.column3')[1],null).height),
-    removePx(window.getComputedStyle($('.column3')[0],null).height));
-  cols.forEach(function(el) {
-    el.style.height = max + "px";
-  });
+}
 
+window.onresize = function(event) {
+  columns.forEach(function(c) {
+    $(c).forEach(function(el) {
+      el.style.height = "auto";
+    });
+  });
+  equalizeColH();
+};
+
+document.body.onload = function() {
+  equalizeColH();
 };
 
 $('.educativo')[0].onmouseover = function() {
@@ -130,5 +131,5 @@ function carousel() {
     slideIndex++;
     if (slideIndex > x.length) {slideIndex = 1} 
     x[slideIndex-1].style.display = "inline-block"; 
-    setTimeout(carousel, 2000); // Change image every 2 seconds
+    setTimeout(carousel, 2000);
 }
