@@ -552,22 +552,20 @@ button:focus, input:focus, textarea:focus {
   outline: none;
 }
 
-/* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 100; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    display: none;
+    position: fixed;
+    z-index: 100;
+    padding-top: 100px;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
 }
 
-/* Modal Content */
 .modal-content {
     position: relative;
     background-color: #fefefe;
@@ -582,7 +580,6 @@ button:focus, input:focus, textarea:focus {
     animation-duration: 0.4s
 }
 
-/* Add Animation */
 @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0} 
     to {top:0; opacity:1}
@@ -593,28 +590,14 @@ button:focus, input:focus, textarea:focus {
     to {top:0; opacity:1}
 }
 
-/* The Close Button */
-.close, .impresion3d-close, .laser-close, .cnc-close, .ninos-close, .jovenes-close, .adultos-close{
+.close {
     color: white;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus,
-.impresion3d-close:hover,
-.impresion3d-close:focus,
-.laser-close:hover,
-.laser-close:focus,
-.cnc-close:hover,
-.cnc-close:focus,
-.ninos-close:hover,
-.ninos-close:focus,
-.jovenes-close:hover,
-.jovenes-close:focus,
-.adultos-close:hover,
-.adultos-close:focus {
+.close:hover, .close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;

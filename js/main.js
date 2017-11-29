@@ -76,8 +76,6 @@ function getMaxMoveEdu() {
     * (removePx(window.getComputedStyle($('.educativo')[0],null).width))
     / eduIndImgW;
   return (realH
-    - (removePx(window.getComputedStyle($('.educativo')[0],null).height)
-    + removePx(window.getComputedStyle($('.educativo')[0],null).paddingTop)
     + removePx(window.getComputedStyle($('.educativo')[0],null).paddingBottom)
     )) - 5;
 }
@@ -94,127 +92,31 @@ function getMaxMoveInd() {
     )) - 5;
 }
 
-
-var modal = document.getElementById('impresion3d-modal');
-var btn = document.getElementById("impresion3d-btn");
-var span = document.getElementsByClassName("impresion3d-close")[0];
-
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-span.onclick = function() {
-  modal.style.display = "none";
-  window.location.hash = '#';
-}
-
-var modal2 = document.getElementById('laser-modal');
-var btn2 = document.getElementById("laser-btn");
-var span2 = document.getElementsByClassName("laser-close")[0];
-
-btn2.onclick = function() {
-  modal2.style.display = "block";
-}
-
-span2.onclick = function() {
-  modal2.style.display = "none";
-  window.location.hash = '#';
-}
-
-window.onclick = function(event) {
-  if (event.target == modal2) {
-    modal2.style.display = "none";
-    window.location.hash = '#';
-  }
-}
-
-var modal3 = document.getElementById('cnc-modal');
-var btn3 = document.getElementById("cnc-btn");
-var span3 = document.getElementsByClassName("cnc-close")[0];
-
-btn3.onclick = function() {
-  modal3.style.display = "block";
-}
-
-span3.onclick = function() {
-  modal3.style.display = "none";
-  window.location.hash = '#';
-}
-
-var modal4 = document.getElementById('ninos-modal');
-var btn4 = document.getElementById("ninos-btn");
-var span4 = document.getElementsByClassName("ninos-close")[0];
-
-btn4.onclick = function() {
-  modal4.style.display = "block";
-}
-
-span4.onclick = function() {
-  modal4.style.display = "none";
-  window.location.hash = '#';
-}
-
-var modal5 = document.getElementById('jovenes-modal');
-var btn5 = document.getElementById("jovenes-btn");
-var span5 = document.getElementsByClassName("jovenes-close")[0];
-
-btn5.onclick = function() {
-  modal5.style.display = "block";
-}
-
-span5.onclick = function() {
-  modal5.style.display = "none";
-  window.location.hash = '#';
-}
-
-var modal6 = document.getElementById('adultos-modal');
-var btn6 = document.getElementById("adultos-btn");
-var span6 = document.getElementsByClassName("adultos-close")[0];
-
-btn6.onclick = function() {
-  modal6.style.display = "block";
-}
-
-span6.onclick = function() {
-  modal6.style.display = "none";
-  window.location.hash = '#';
-}
-
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-    window.location.hash = '#';
-  }
-  if (event.target == modal2) {
-    modal2.style.display = "none";
-    window.location.hash = '#';
-  }
-  if (event.target == modal3) {
-    modal3.style.display = "none";
-    window.location.hash = '#';
-  }
-  if (event.target == modal4) {
-    modal4.style.display = "none";
-    window.location.hash = '#';
-  }
-  if (event.target == modal5) {
-    modal5.style.display = "none";
-    window.location.hash = '#';
-  }
-  if (event.target == modal6) {
-    modal6.style.display = "none";
-    window.location.hash = '#';
-  }
-}
-
-/*var modals = ['impresion3d', 'laser', 'cnc', 'ninos', 'jovenes', 'adultos'];
+var modals = ['impresion3d', 'laser', 'cnc', 'ninos', 'jovenes', 'adultos'];
 modals.forEach(function(modal) {
-  var div = $('#' + modals + '-modal');
-  var btn = $('#' + modals + '-btn');
+  var div = $('#' + modal + '-modal')[0];
+  var btn = $('#' + modal + '-btn')[0];
   btn.onclick = function() {
-    btn.style.display = 'block';
+    div.style.display = 'block';
   }
-});*/
+});
+
+$('.close').forEach(function(el) {
+  el.onclick = function() {
+    modals.forEach(function(modal) {
+      $('#' + modal + '-modal')[0].style.display = 'none';
+    });
+  };
+});
+
+window.onclick = function(event) {
+  modals.forEach(function(modal) {
+    var div = $('#' + modal + '-modal')[0];
+    if(event.target == div) {
+      div.style.display = 'none';
+    }
+  });
+};
 
 var slideIndex = 0;
 carousel();
