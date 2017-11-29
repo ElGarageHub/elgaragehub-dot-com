@@ -1,0 +1,14 @@
+{
+  "name": "elgarageweb",
+  "version": "1.0.0",
+  "description": "Website for El Garage Project Hub",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Javier Rizzo Aguirre",
+  "license": "MIT",
+  "dependencies": {
+    "font-awesome": "^4.7.0"
+  }
+}
