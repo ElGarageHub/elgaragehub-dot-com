@@ -75,6 +75,8 @@ function getMaxMoveEdu() {
     * (removePx(window.getComputedStyle($('.educativo')[0],null).width))
     / eduIndImgW;
   return (realH
+    - (removePx(window.getComputedStyle($('.educativo')[0],null).height)
+    + removePx(window.getComputedStyle($('.educativo')[0],null).paddingTop)
     + removePx(window.getComputedStyle($('.educativo')[0],null).paddingBottom)
     )) - 5;
 }
