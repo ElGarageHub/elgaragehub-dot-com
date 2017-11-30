@@ -33,6 +33,12 @@ window.onresize = function(event) {
 
 document.body.onload = function() {
   equalizeColH();
+  var style = document.createElement('style');
+  style.innerHTML = "@font-face {"
+    + "  font-family: 'Xolonium';"
+    + "  src: url('font/Xolonium.woff') format('woff');"
+    + "}";
+  document.head.appendChild(style);
 };
 
 $('.educativo')[0].onmouseover = function() {

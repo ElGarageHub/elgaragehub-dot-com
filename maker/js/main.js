@@ -15,6 +15,13 @@ document.body.onload = function() {
       img.style.borderColor = '#FFFFFF';
     }
   });
+
+  var style = document.createElement('style');
+  style.innerHTML = "@font-face {"
+    + "  font-family: 'Xolonium';"
+    + "  src: url('../font/Xolonium.woff') format('woff');"
+    + "}";
+  document.head.appendChild(style);
 };
 
 window.onresize = function(event) {
