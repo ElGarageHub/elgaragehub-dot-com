@@ -5,6 +5,15 @@ var industrialTimeout = 0;
 var eduIndImgH = 591;
 var eduIndImgW = 721;
 
+(function() {
+	if (typeof NodeList.prototype.forEach === "undefined") {
+		NodeList.prototype.forEach = Array.prototype.forEach;
+	}
+	if (typeof HTMLCollection.prototype.forEach === "undefined") {
+		HTMLCollection.prototype.forEach = Array.prototype.forEach;
+	}
+})();
+
 function removePx(str) {
   return parseInt(str.substring(0,str.length-2));
 }
