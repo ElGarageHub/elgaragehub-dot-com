@@ -181,8 +181,6 @@ body#maker {
   margin-top: -185px;
 }
 
-
-
 h1, h2, h3 {
   font-family: Xolonium, sans-serif;
   font-weight: bold;
@@ -225,6 +223,7 @@ strong {
   .column, .column2, .column3 {
     width: 50%;
     display: inline-block;
+    margin-left: -3px;
   }
 
   .tcolumn {
@@ -237,6 +236,7 @@ strong {
   .column, .column2, .column3 {
     display: block;
     width: 100%;
+    margin-left: 0;
   }
   
   .tcolumn {
@@ -245,13 +245,12 @@ strong {
   }
 
   .educativo svg {
-    margin-top: 110px;
+    margin-top: 120px;
   }
 }
 
 .column {
   vertical-align: top;
-  margin-left: -3px;
   text-align: center;
   padding-top: 10vh;
   padding-bottom: 10vh;
@@ -260,14 +259,12 @@ strong {
 
 .column2 {
   vertical-align: top;
-  margin-left: -3px;
   text-align: center;
   color: rgb(44, 57, 93);
 }
 
 .column3 {
   vertical-align: top;
-  margin-left: -3px;
   text-align: center;
   color: #FFFFFF;
 }
@@ -380,6 +377,13 @@ h2 {
   color: #FFFFFF;
   margin-top: 0;
   opacity: 0;
+}
+
+@media(any-pointer: coarse) {
+  .talleres .tcolumn h3 {
+    margin-top: 2em;
+    opacity: 1;
+  }
 }
 
 .talleres .tcolumn:hover img {
@@ -522,6 +526,12 @@ input, textarea {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
+}
+
+@media (max-width: 576px) {
+  input, textarea {
+    width: 80%;
+  }
 }
 
 .contacto {
