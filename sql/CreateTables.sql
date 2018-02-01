@@ -31,6 +31,11 @@ CREATE TABLE Escuelas (
   ,PRIMARY KEY(id)
 );
 
+INSERT INTO
+  Escuelas
+VALUES
+  (0, 'El Garage Project Hub', Datetime('now'), 'root');
+
 CREATE TABLE TemasInteres (
   id INTEGER NOT NULL
   ,tema TEXT
@@ -43,12 +48,12 @@ INSERT INTO
   TemasInteres
 VALUES
   (0, 'Política', Datetime('now'), 'root')
-  ,(0, 'Nuevos inventos', Datetime('now'), 'root')
-  ,(0, 'Nuevos descubrimientos científicos', Datetime('now'), 'root')
-  ,(0, 'Contaminación ambiental', Datetime('now'), 'root')
-  ,(0, 'Sociales y espectáculos', Datetime('now'), 'root')
-  ,(0, 'Arte', Datetime('now'), 'root')
-  ,(0, 'Otro', Datetime('now'), 'root');
+  ,(1, 'Nuevos inventos', Datetime('now'), 'root')
+  ,(2, 'Nuevos descubrimientos científicos', Datetime('now'), 'root')
+  ,(3, 'Contaminación ambiental', Datetime('now'), 'root')
+  ,(4, 'Sociales y espectáculos', Datetime('now'), 'root')
+  ,(5, 'Arte', Datetime('now'), 'root')
+  ,(6, 'Otro', Datetime('now'), 'root');
 
 CREATE TABLE EstudianteTemasInteres (
   id INTEGER NOT NULL
@@ -211,10 +216,29 @@ VALUES
 CREATE TABLE Familiares (
   id INTEGER NOT NULL
   ,estudianteId INTEGER
-  ,parentesco TEXT
+  ,parentescoId INTEGER
   ,edad INTEGER
   ,ocupacion TEXT
   ,timestamp TEXT
   ,createdBy TEXT
+  ,PRIMARY KEY(id)
   ,FOREIGN KEY(estudianteId) REFERENCES Estudiantes(id)
+  ,FOREIGN KEY(parentescoId) REFERENCES Parentesco(id)
 );
+
+CREATE TABLE Parentesco (
+  id INTEGER NOT NULL
+  ,nombre TEXT
+  ,PRIMARY KEY(id)
+);
+
+INSERT INTO
+  Parentesco
+VALUES
+  (0, 'Padre')
+  ,(1, 'Madre')
+  ,(2, 'Hermano(a)')
+  ,(3, 'Abuelo(a)')
+  ,(4, 'Tio(a)')
+  ,(5, 'Primo(a)')
+  ,(6, 'Otro');
