@@ -26,6 +26,7 @@ body#maker {
 .maker-content {
   color: #FFFFFF;
   text-align: center;
+  overflow-x: hidden;
 }
 
 .maker-content h1 {
