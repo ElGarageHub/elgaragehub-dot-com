@@ -39,11 +39,13 @@ window.onresize = function(event) {
   });
   equalizeColH();
   respondLogo();
+  respondVideo();
 };
 
 document.body.onload = function() {
   equalizeColH();
   respondLogo();
+  respondVideo();
   var style = document.createElement('style');
   style.innerHTML = "@font-face {"
     + "  font-family: 'Xolonium';"
@@ -162,4 +164,13 @@ function respondLogo() {
     -removePx(window.getComputedStyle(logo,null).height) / 2 + 'px';
   $('.educativo svg').marginTop =
     removePx(window.getComputedStyle(logo,null).height) / 2 + 'px';
+}
+
+function respondVideo() {
+  var video = $('.header-video')[0];
+  if(innerHeight > innerWidth / 1920 * 1080) {
+    video.style.width = (innerHeight / 1080 * 1920) + 'px';
+  } else {
+    video.style.width = '100vw';
+  }
 }

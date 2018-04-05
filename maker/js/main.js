@@ -13,8 +13,10 @@ document.body.onload = function() {
   equalizeHeight();
 
   $('.maker').forEach(function(el) {
+    var img = el.querySelector('img');
+    var imgel = new Image();
+    imgel.src = img.src.substring(0, img.src.length - 5) + '2.jpg';
     el.onmouseover = function() {
-      var img = el.querySelector('img');
       img.src = img.src.substring(0, img.src.length - 5) + '2.jpg';
       img.style.borderColor = '#4260AC';
     };
