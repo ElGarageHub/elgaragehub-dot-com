@@ -779,3 +779,8 @@ a:link, a:visited, a:hover, a:active {
   background-image: url();
 
 }
+
+.map-impacto {
+  width: 100vw;
+  height: 100vw;
+}
