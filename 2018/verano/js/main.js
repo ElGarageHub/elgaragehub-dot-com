@@ -47,3 +47,27 @@ function equalizeColH() {
 function removePx(str) {
   return parseInt(str.substring(0,str.length-2));
 }
+
+
+var animationEnd = (function(el) {
+    var animations = {
+          animation: 'animationend',
+          OAnimation: 'oAnimationEnd',
+          MozAnimation: 'mozAnimationEnd',
+          WebkitAnimation: 'webkitAnimationEnd',
+        };
+
+    for (var t in animations) {
+          if (el.style[t] !== undefined) {
+                  return animations[t];
+                }
+        }
+})(document.createElement('div'));
+
+$('.badge').forEach(function(el) {
+  el.addEventListener(animationEnd, function() {el.className = 'badge'});
+  el.parentElement.parentElement.onmouseenter = function() {
+    el.className = 'badge animated wobble';
+  };
+});
+
