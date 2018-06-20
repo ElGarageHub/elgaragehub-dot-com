@@ -348,3 +348,7 @@ li::before {
   color: rgb(44, 57, 93);
   content: "";
 }
+
+iframe {
+  min-height: 400px;
+}
