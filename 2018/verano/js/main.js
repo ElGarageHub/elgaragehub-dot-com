@@ -7,6 +7,10 @@
 	}
 })();
 
+Number.prototype.clamp = function(min, max) {
+    return Math.min(Math.max(this, min), max);
+};
+
 document.body.onload = function() {
   equalizeColH();
   fixNavbar();
@@ -24,13 +28,8 @@ window.onresize = function() {
 }
 
 document.body.onscroll = function() {
-  if(window.scrollY > 100) {
-    $('.navbar')[0].style['background-color'] = '#FFFFFF';
-    $('.navbar')[0].style['border-bottom'] = '1px solid #DDDDDD';
-  } else {
-    $('.navbar')[0].style['background-color'] = 'rgba(0, 0, 0, 0)';
-    $('.navbar')[0].style['border-bottom'] = '1px solid rgba(0, 0, 0, 0)';
-  }
+  $('.navbar')[0].style['background-color'] = 'rgba(255, 255, 255, ' + window.scrollY.clamp(0, 255) / 255 + ')';
+  $('.navbar')[0].style['border-bottom'] = '1px solid rgba(221, 221, 221, ' + window.scrollY.clamp(0, 255) / 255 + ')';
 }
 
 var columns = ['.column', '.column2', '.column3'];
