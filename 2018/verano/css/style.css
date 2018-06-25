@@ -352,3 +352,7 @@ li::before {
 iframe {
   min-height: 400px;
 }
+
+table.talleres {
+  margin-bottom: 40px;
+}
