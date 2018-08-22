@@ -13,7 +13,6 @@ Number.prototype.clamp = function(min, max) {
 
 document.body.onload = function() {
   equalizeColH();
-  fixNavbar();
   var style = document.createElement('style');
   style.innerHTML = "@font-face {"
     + "  font-family: 'Xolonium';"
@@ -24,12 +23,6 @@ document.body.onload = function() {
 
 window.onresize = function() {
   equalizeColH();
-  fixNavbar();
-}
-
-document.body.onscroll = function() {
-  $('.navbar')[0].style['background-color'] = 'rgba(255, 255, 255, ' + window.scrollY.clamp(0, 255) / 255 + ')';
-  $('.navbar')[0].style['border-bottom'] = '1px solid rgba(221, 221, 221, ' + window.scrollY.clamp(0, 255) / 255 + ')';
 }
 
 var columns = ['.column', '.column2', '.column3'];
@@ -53,13 +46,6 @@ function equalizeColH() {
       }
     });
   });
-}
-
-function fixNavbar() {
-  $('.navbar .buttons')[0].style.display = "block";
-  if(removePx(window.getComputedStyle($('.navbar')[0], null).height) > 90) {
-    $('.navbar .buttons')[0].style.display = "none";
-  }
 }
 
 function removePx(str) {
@@ -91,7 +77,7 @@ $('.badge').forEach(function(el) {
 
 
 
-var modals = ['menu'];
+var modals = ['makerlab', 'applecoding'];
 modals.forEach(function(modal) {
   var div = $('#' + modal + '-modal')[0];
   var btn = $('#' + modal + '-btn')[0];

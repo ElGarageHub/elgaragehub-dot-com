@@ -172,14 +172,8 @@ ul {
   margin: 0;
 }
 
-li {
-  padding-left: 1em; 
-  text-indent: -.7em;
-}
-
-li::before {
-  color: rgb(44, 57, 93);
-  content: "• ";
+ol ol {
+  list-style-type: lower-alpha;
 }
 
 .section {
@@ -369,4 +363,9 @@ table.talleres {
   text-align: center;
   display: inline-block;
   vertical-align: middle;
+}
+
+button {
+  font-family: Xolonium, sans-serif;
+  height: 30px;
 }
