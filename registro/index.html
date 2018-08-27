@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="description" content="El Garage Project Hub es un Makerspace con motivos tanto Educativos como Industriales y que cuenta con servicios de impresión 3D, corte con láser, y talleres." />
+    <meta name="author" content="El Garage Project Hub" />
+    <meta name="keywords" content="garage, makerspace, educativo, industrial, impresion 3d, corte con láser, talleres, tecnología" />
+    <meta property="og:title" content="El Garage Project Hub" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://www.elgaragehub.com/" />
+    <meta property="og:image" content="http://javierrizzo.com/elgarage/media/logo.svg" />
+    <meta property="og:description" content="El Garage Project Hub es un Makerspace con motivos tanto Educativos como Industriales y que cuenta con servicios de impresión 3D, corte con láser, y talleres." /> 
+
+    <meta name="theme-color" content="#2C395D">
+    <meta name="msapplication-navbutton-color" content="#2C395D">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#2C395D">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="../media/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../media/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="../media/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../media/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="../media/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../media/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="../media/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../media/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../media/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="../media/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../media/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="../media/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../media/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../media/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="../media/favicon/ms-icon-144x144.png">
+
+    <title>Registro | El Garage Project Hub</title>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+  <body>
+    <div class="cuadros">
+      <div class="form-container">
+        <h1>Registro</h1>
+        <form>
+          <select id="escuela" name="escuela">
+            <option value="">--Escuela o Programa--</option>
+          </select>
+          <input id="nombres" class="nombre" type="text" placeholder="Nombre(s)">
+          <input id="apellidos" class="nombre" type="text" placeholder="Apellido(s)">
+          <select id="edad" name="edad">
+            <option value="">--Edad--</option>
+          </select>
+          <select id="sexo" name="sexo">
+            <option value="">--Sexo--</option>
+            <option value="1">Masculino</option>
+            <option value="0">Femenino</option>
+            <option value="2">Otro</option>
+          </select>
+          <table id="familiares">
+            <tr>
+              <th colspan="4">¿Con qué personas vives en tu casa?</th>
+            </tr>
+            <tr>
+              <th></th>
+              <th>Parentesco</th>
+              <th>Edad</th>
+              <th>Profesión/Estudios</th>
+            </tr>
+            <tr>
+              <td><button type="button" class="table-add" onclick="familiarInsertRow();">+</button></td>
+              <td></td>
+              <th></th>
+              <td></td>
+            </tr>
+          </table>
+          <input id="ocupacion-futura" type="text" placeholder="¿Qué quieres ser cuando seas grande?">
+          <select id="nivel-estudios" name="nivel-estudios">
+            <option value="">-- ¿Qué nivel de estudios esperas alcanzar? --</option>
+          </select>
+          <input id="admiracion" type="text" placeholder="¿A quién admiras / quién es tu ejemplo a seguir?">
+          <input id="juego-favorito" type="text" placeholder="¿Cuál es tu juego o juguete favorito?">
+          <select id="comunidad-segura" name="comunidad-segura">
+            <option value="">-- ¿Consideras que tu colonia/comunidad es segura? --</option>
+            <option value="1">Sí</option>
+            <option value="0">No</option>
+          </select>
+          <input id="significado-violencia" type="text" placeholder="Para ti, ¿qué es la violencia?">
+          <select id="victima-violencia" name="victima-violencia">
+            <option value="">-- ¿Has sido víctima de algún tipo de violencia? --</option>
+            <option value="1">Sí</option>
+            <option value="0">No</option>
+          </select>
+          <table id="tipos-violencia-table">
+            <tr>
+              <th>¿De qué tipo de violencia has sido víctima?</th>
+            </tr>
+          </table>
+          <table id="problemas-familia-table">
+            <tr>
+              <th>¿Qué problemas identificas en tu familia?</th>
+            </tr>
+          </table>
+          <select id="persona-violenta" name="persona-violenta">
+            <option value="">-- ¿Te consideras una persona violenta? --</option>
+            <option value="1">Sí</option>
+            <option value="0">No</option>
+          </select>
+          <table id="violencia-practicada-table">
+            <tr>
+              <th>¿Qué formas de violencia has practicado?</th>
+            </tr>
+          </table>
+          <table id="tecnologias-casa-table">
+            <tr>
+              <th>¿Qué tipos de tecnología usas/tienes en tu casa?</th>
+            </tr>
+          </table>
+          <table id="temas-interes-table">
+            <tr>
+              <th>¿Qué temas te interesa trabajar mediante ciencia y tecnología?</th>
+            </tr>
+          </table>
+          <table id="tecnologias-escuela-table">
+            <tr>
+              <th>¿Qué tipo de tecnología utilizan en tu escuela?</th>
+            </tr>
+          </table>
+          <select id="persona-creativa" name="persona-creativa">
+            <option value="">-- ¿Te consideras una persona creativa? --</option>
+            <option value="1">Sí</option>
+            <option value="0">No</option>
+          </select>
+          <select id="crear-robot" name="crear-robot">
+            <option value="">-- ¿Alguna vez habías pensado en crear un robot? --</option>
+            <option value="1">Sí</option>
+            <option value="0">No</option>
+          </select>
+          <select id="disminuir-violencia" name="disminuir-violencia">
+            <option value="">-- ¿Crees que la ciencia y la tecnología pueden disminuír la violencia? --</option>
+            <option value="1">Sí</option>
+            <option value="0">No</option>
+          </select>
+          <input id="como-disminuir-violencia" type="text" placeholder="¿Cómo?">
+          <button type="button" onclick="sendData();">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script>window.$ = document.querySelectorAll.bind(document);</script>
+  <script src="js/populate-fields.js"></script>
+  <script src="js/send-data.js"></script>
+</html>
