@@ -1,6 +1,6 @@
 # elgarage-dot-com
 
-El Garage Project Hub Website, deployed to https://javierrizzo.com/elgarage/
+El Garage Project Hub Website, deployed to https://elgaragehub.com/
 
 ## Installation
 
@@ -14,7 +14,7 @@ npm install
 
 ### The MIT License
 
-Copyright (c) 2017 El Garage Project Hub
+Copyright (c) 2017-2018 El Garage Project Hub, Javier Rizzo Aguirre
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

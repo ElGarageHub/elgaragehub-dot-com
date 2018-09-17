@@ -1,0 +1,83 @@
+body {
+  background-color: #FFF;
+  font-size: 16px;
+  color: rgb(44, 57, 93);
+  height: 100%;
+}
+
+h1 {
+  text-align: center;
+}
+
+.form-container {
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fAfAfA;
+  padding: 40px;
+}
+
+select, input[type="text"] {
+  margin: 15px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+select {
+  width: 100%;
+  font-size: 16px;
+  padding: 2px;
+}
+
+input[type="text"] {
+  font-size: 16px;
+  width: 100%;
+  padding: 2px;
+}
+
+input.nombre {
+  width: 45%;
+  margin-right: 0;
+}
+
+input#apellidos {
+  float: right;
+}
+
+table, th, td {
+  border: 0px solid rgb(44, 57, 93);
+  border-collapse: collapse;
+}
+
+table#familiares, table#familiares th, table#familiares td {
+  border-width: 1px;
+}
+
+table {
+  width: 100%;
+  margin: 15px;
+}
+
+.table-remove, .table-add {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+table select {
+  margin: 0;
+  width: 100%;
+}
+
+table input[type="text"] {
+  margin: auto;
+  width: 95%;
+  display: block;
+}
+
+button {
+  display: block;
+  margin: auto;
+  font-size: 16px;
+  padding: 5px 15px;
+}
