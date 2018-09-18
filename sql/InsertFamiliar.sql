@@ -2,8 +2,8 @@ INSERT INTO
   Familiares
 VALUES (
   @id
-  ,@estudiante
-  ,@parentesco
+  ,@estudianteId
+  ,@parentescoId
   ,@edad
   ,@ocupacion
   ,Datetime('now')

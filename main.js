@@ -1,14 +1,8 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const sqlite3 = require('sqlite3').verbose();
 const util = require('util');
-const fs = require('fs');
-
-const DB_FILE = path.join(__dirname, 'database.db');
-const SQL_CREATE_TABLES = path.join(__dirname, 'sql/CreateTables.sql');
-
-let db = new sqlite3.Database(DB_FILE);
+const db = require('./modules/database.js');
 
 function error(msg) {
   if(msg) {
@@ -26,7 +20,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 
@@ -34,16 +29,41 @@ process.on('SIGINT', function() {
   error('SIGINT');
 });
 
-app.get('/get-data', function(req, res) {
-  switch(req.query.data) {
-    case 'escuelas':
-      db.all('SELECT id, nombre FROM Escuelas', function(err, rows) {
-        if(err) error('ERROR al consultar la tabla Escuelas');
-        res.send(JSON.stringify(rows));
+app.post('/register', function(req, res) {
+  let id = db.generateRandomID();
+  db.insertEstudiante(id, req.body, function(err) {
+    if(err) {
+      console.log(err);
+      res.send({
+        stat: "error",
+        message: err
       });
-      break;
-  }
+    } else {
+      res.send({
+        stat: "ok"
+      });
+    }
+  });
 });
 
-console.log('Starting server.');
-app.listen(9484);
+app.get('/get-data', function(req, res) {
+  db.getData(req.query.data, function(err, data) {
+    if(err) {
+      error(err);
+    } else {
+      res.send(JSON.stringify(data));
+    }
+  });
+});
+
+(function() {
+  console.log('Starting server...');
+  db.readQueries(function(err) {
+    if(err) {
+      error(err);
+    } else {
+      console.log('Server Started.');
+      app.listen(9484);
+    }
+  });
+})();

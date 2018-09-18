@@ -2,8 +2,8 @@ INSERT INTO
   EstudianteTiposTecnologiaEscuela
 VALUES (
   @id
-  ,@estudiante
-  ,@tipoTecnologia
+  ,@estudianteId
+  ,@tipoTecnologiaId
   ,Datetime('now')
   ,@createdBy
 );

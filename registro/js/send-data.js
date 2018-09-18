@@ -7,11 +7,28 @@ function getSelectValue(selector, i) {
 function generateJSON() {
   data = {};
 
-  ['escuela', 'edad', 'sexo', 'nivel-estudios', 'comunidad-segura', 'victima-violencia', 'persona-violenta', 'persona-creativa', 'crear-robot', 'disminuir-violencia'].forEach(function(item) {
+  [
+    'escuela',
+    'edad',
+    'sexo',
+    'nivel-estudios',
+    'comunidad-segura',
+    'victima-violencia',
+    'persona-violenta',
+    'persona-creativa',
+    'crear-robot',
+    'disminuir-violencia'
+  ].forEach(function(item) {
     data[item] = getSelectValue('#' + item);
   });
 
-  ['nombres', 'apellidos', 'ocupacion-futura', 'admiracion', 'juego-favorito', 'significado-violencia', 'como-disminuir-violencia'].forEach(function(item) {
+  [
+    'ocupacion-futura',
+    'admiracion',
+    'juego-favorito',
+    'significado-violencia',
+    'como-disminuir-violencia'
+  ].forEach(function(item) {
     data[item] = $('#' + item)[0].value;
   });
 
@@ -29,7 +46,14 @@ function generateJSON() {
     data.familiares[i].profesion = el.value;
   });
 
-  ['tipos-violencia', 'problemas-familia', 'violencia-practicada', 'tecnologias-casa', 'temas-interes', 'tecnologias-escuela'].forEach(function(item) {
+  [
+    'tipos-violencia',
+    'problemas-familia',
+    'violencia-practicada',
+    'tecnologias-casa',
+    'temas-interes',
+    'tecnologias-escuela'
+  ].forEach(function(item) {
     data[item] = [];
     $('[name="' + item + '"]').forEach(function(cb) {
       if(cb.checked) data[item].push(cb.value);

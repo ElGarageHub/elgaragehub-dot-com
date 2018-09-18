@@ -2,8 +2,6 @@ INSERT INTO
   Estudiantes
 VALUES (
   @id
-  ,@nombres
-  ,@apellidos
   ,@edad
   ,@sexo
   ,@escuela

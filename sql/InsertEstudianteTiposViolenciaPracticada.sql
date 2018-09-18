@@ -2,8 +2,8 @@ INSERT INTO
   EstudianteTiposViolenciaPracticados
 VALUES (
   @id
-  ,@estudiante
-  ,@tipoViolencia
+  ,@estudianteId
+  ,@tipoViolenciaId
   ,Datetime('now')
   ,@createdBy
 );
