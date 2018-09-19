@@ -21,52 +21,52 @@ function getData(data, callback) {
   switch(data) {
     case 'escuelas':
       db.all('SELECT id, nombre FROM Escuelas', function(err, rows) {
-        if(err) callback('ERROR al consultar la tabla Escuelas');
+        if(err) callback('ERROR al consultar la tabla Escuelas: ' + err);
         else callback(null, rows);
       });
       break;
     case 'parentescos':
       db.all('SELECT id, nombre FROM Parentesco', function(err, rows) {
-        if(err) callback('ERROR al consultar la tabla Parentesco');
+        if(err) callback('ERROR al consultar la tabla Parentesco: ' + err);
         else callback(null, rows);
       });
       break;
     case 'niveles-estudios':
       db.all('SELECT id, nivel FROM NivelesEstudios', function(err, rows) {
-        if(err) callback('ERROR al consultar la tabla NivelesEstudios');
+        if(err) callback('ERROR al consultar la tabla NivelesEstudios: ' + err);
         else callback(null, rows);
       });
       break;
     case 'tipos-violencia':
       db.all('SELECT id, tipo FROM TiposViolencia', function(err, rows) {
-        if(err) callback('ERROR al consultar la tabla TiposViolencia');
+        if(err) callback('ERROR al consultar la tabla TiposViolencia: ' + err);
         else callback(null, rows);
       });
       break;
     case 'problemas-familia':
       db.all('SELECT id, problema FROM TiposProblemaFamilia',
         function(err, rows) {
-          if(err) callback('ERROR al consultar la tabla TiposProblemaFamilia');
+          if(err) callback('ERROR al consultar la tabla TiposProblemaFamilia: ' + err);
           else callback(null, rows);
         });
       break;
     case 'tecnologia-casa':
       db.all('SELECT id, tecnologia FROM TiposTecnologiaCasa',
         function(err, rows) {
-          if(err) callback('ERROR al consultar la tabla TiposTecnologiaCasa');
+          if(err) callback('ERROR al consultar la tabla TiposTecnologiaCasa: ' + err);
           else callback(null, rows);
         });
       break;
     case 'tecnologia-escuela':
       db.all('SELECT id, tecnologia FROM TiposTecnologiaEscuela',
         function(err, rows) {
-          if(err) callback('ERROR al consultar la tabla TiposTecnologiaEscuela');
+          if(err) callback('ERROR al consultar la tabla TiposTecnologiaEscuela: ' + err);
           else callback(null, rows);
         });
       break;
     case 'temas-interes':
       db.all('SELECT id, tema FROM TemasInteres', function(err, rows) {
-        if(err) callback('ERROR al consultar la tabla TemasInteres');
+        if(err) callback('ERROR al consultar la tabla TemasInteres: ' + err);
         else callback(null, rows);
       });
       break;

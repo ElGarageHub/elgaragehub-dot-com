@@ -31,14 +31,17 @@ process.on('SIGINT', function() {
 
 app.post('/register', function(req, res) {
   let id = db.generateRandomID();
+  console.log('Inserting Estudiante ' + id);
   db.insertEstudiante(id, req.body, function(err) {
     if(err) {
       console.log(err);
+      console.log('Aborted insertion of Estudiante ' + id);
       res.send({
         stat: "error",
         message: err
       });
     } else {
+      console.log('Estudiante ' + id + ' inserted');
       res.send({
         stat: "ok"
       });
