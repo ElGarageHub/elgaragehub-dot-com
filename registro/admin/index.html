@@ -35,47 +35,34 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="../../media/favicon/ms-icon-144x144.png">
 
-    <title>Registro | El Garage Project Hub</title>
+    <title>Admin | Registro | El Garage Project Hub</title>
 
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+    <meta name="google-signin-client_id" content="326776711119-8f7t8s12tvovim6d4mtlurghli6k6sde.apps.googleusercontent.com">
   </head>
   <body>
     <div class="cuadros">
       <div class="form-container">
-        <h1>Registro</h1>
-        <form>
-          <select id="escuela" name="escuela">
-            <option value="">--Escuela o Programa--</option>
-          </select>
-          <input id="nombre" type="text" placeholder="Nombre">
-          <select id="edad" name="edad">
-            <option value="">--Edad--</option>
-          </select>
-          <select id="sexo" name="sexo">
-            <option value="">--Sexo--</option>
-            <option value="m">Masculino</option>
-            <option value="f">Femenino</option>
-            <option value="o">Otro</option>
-          </select>
-          <p>¿Con qué personas vives en tu casa?</p>
-          <table id="familiares">
-            <tr>
-              <th></th>
-              <th>Parentesco</th>
-              <th>Edad</th>
-              <th>Profesión/Estudios</th>
-            </tr>
-            <tr>
-              <td><button type="button" class="table-add" onclick="familiarInsertRow();">+</button></td>
-              <td></td>
-              <th></th>
-              <td></td>
-            </tr>
-          </table>
-        </form>
+        <div class="g-signin2" data-onsuccess="onSignIn" style="margin-left: auto; margin-right: auto; display: block;"></div>
+        <a href="#" onclick="signOut();">Sign out</a>
+        <h1>Admin Registro</h1>
+        <h2>Generar llaves</h2>
+        <h3 id="llave" style="text-align: center; width: 100%;"></h3>
+        <button onclick="genLlave();">Generar Llave</button>
+        <hr>
+        <h2>Agregar respuestas</h2>
+        <h3>Programas</h3>
+        <input id="programa" type="text" placeholder="Nombre del programa">
+        <button onclick="addPrograma();">Agregar Programa</button>
+        <h3>Escuelas</h3>
+        <input id="escuela" type="text" placeholder="Nombre de la escuela">
+        <button onclick="addEscuela();">Agregar Escuela</button>
       </div>
     </div>
+    <script>window.$ = document.querySelectorAll.bind(document);</script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="js/auth.js"></script>
+    <script src="js/send-data.js"></script>
   </body>
-  <script>window.$ = document.querySelectorAll.bind(document);</script>
-  <script src="js/populate-fields.js"></script>
 </html>

@@ -44,11 +44,12 @@
       <div class="form-container">
         <h1>Registro</h1>
         <form>
-          <select id="escuela" name="escuela">
-            <option value="">--Escuela o Programa--</option>
+          <select id="programa" name="programa">
+            <option value="">--Programa--</option>
           </select>
-          <input id="nombres" class="nombre" type="text" placeholder="Nombre(s)">
-          <input id="apellidos" class="nombre" type="text" placeholder="Apellido(s)">
+          <select id="escuela" name="escuela">
+            <option value="">--Escuela--</option>
+          </select>
           <select id="edad" name="edad">
             <option value="">--Edad--</option>
           </select>
@@ -143,6 +144,7 @@
             <option value="0">No</option>
           </select>
           <input id="como-disminuir-violencia" type="text" placeholder="¿Cómo?">
+          <input id="llave" type="text" placeholder="Llave proporcionada por el instructor.">
           <button type="button" onclick="sendData();">Enviar</button>
         </form>
       </div>

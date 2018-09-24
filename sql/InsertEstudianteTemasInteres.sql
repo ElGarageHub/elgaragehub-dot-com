@@ -4,6 +4,4 @@ VALUES (
   @id
   ,@estudianteId
   ,@temaInteres
-  ,Datetime('now')
-  ,@createdBy
 );
