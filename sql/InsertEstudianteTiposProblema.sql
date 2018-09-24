@@ -4,6 +4,4 @@ VALUES (
   @id
   ,@estudianteId
   ,@tipoProblemaId
-  ,@Datetime('now')
-  ,@createdBy
 );

@@ -1,7 +1,7 @@
-var REGISTER_SERVER = 'http://localhost:9484/register';
+var REGISTER_SERVER = 'https://elgaragehub.com:9484/register';
 function getSelectValue(selector, i) {
   i = i || 0;
-  return $(selector)[i].options[$(selector)[i].selectedIndex].value;
+  return parseInt($(selector)[i].options[$(selector)[i].selectedIndex].value);
 }
 
 function generateJSON() {
@@ -9,6 +9,7 @@ function generateJSON() {
 
   [
     'escuela',
+    'programa',
     'edad',
     'sexo',
     'nivel-estudios',
@@ -27,7 +28,8 @@ function generateJSON() {
     'admiracion',
     'juego-favorito',
     'significado-violencia',
-    'como-disminuir-violencia'
+    'como-disminuir-violencia',
+    'llave'
   ].forEach(function(item) {
     data[item] = $('#' + item)[0].value;
   });
@@ -67,5 +69,9 @@ function sendData() {
   var request = new XMLHttpRequest();
   request.open('POST', REGISTER_SERVER);
   request.setRequestHeader("Content-Type", "application/json");
+  request.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
   request.send(JSON.stringify(data));
 }

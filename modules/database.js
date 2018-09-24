@@ -1,27 +1,32 @@
+"use strict";
+
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const fs = require('fs');
 
-const DB_FILE = path.join(path.join(__dirname, '../'), 'database.db');
-const SQL_CREATE_TABLES = path.join(
-  path.join(__dirname, '../'), 'sql/CreateTables.sql');
+const DB_FILE = path.join(__dirname, '../', 'database.db');
+const SQL_CREATE_TABLES = path.join(__dirname, '../', 'sql/CreateTables.sql');
 
-
-let db = new sqlite3.Database(DB_FILE, null, function() {
-  db.exec('PRAGMA foreign_keys = ON;');
-});
+let db = new sqlite3.Database(DB_FILE);
+db.get('PRAGMA foreign_keys = ON');
 
 let sqlQueries = [];
 
 function generateRandomID() {
-  return Math.random() * Math.pow(10, 17);
+  return Math.round(Math.random() * Math.pow(10, 18));
 }
 
 function getData(data, callback) {
   switch(data) {
     case 'escuelas':
-      db.all('SELECT id, nombre FROM Escuelas', function(err, rows) {
+      db.all('SELECT id, nombre FROM Escuelas ORDER BY nombre', function(err, rows) {
         if(err) callback('ERROR al consultar la tabla Escuelas: ' + err);
+        else callback(null, rows);
+      });
+      break;
+    case 'programas':
+      db.all('SELECT id, nombre FROM Programas ORDER BY nombre', function(err, rows) {
+        if(err) callback('ERROR al consultar la tabla Programas: ' + err);
         else callback(null, rows);
       });
       break;
@@ -73,14 +78,81 @@ function getData(data, callback) {
   }
 }
 
+function insertUser(id, data, callback) {
+  db.run(sqlQueries['InsertUser'], {
+    '@id': id,
+    '@googleId': data.googleId,
+    '@email': data.email,
+    '@nombres': data.nombres,
+    '@apellidos': data.apellidos,
+    '@permissions': 1
+  }, function(err) {
+    if(err) {
+      callback('ERROR al correr InsertUser: ' + err);
+    } else if(this.changes == 0) {
+      callback('User already exists.');
+    } else {
+      callback(null);
+    }
+  });
+}
+
+function insertPrograma(id, data, callback) {
+  db.run(sqlQueries['InsertPrograma'], {
+    '@id': id,
+    '@nombre': data.nombre,
+    '@googleId': data.googleId
+  }, function(err) {
+    if(err) {
+      callback('ERROR al correr InsertPrograma: ' + err);
+    } else if(this.changes == 0) {
+      callback('ERROR de permisos');
+    } else {
+      callback(null);
+    }
+  });
+}
+
+function insertEscuela(id, data, callback) {
+  db.run(sqlQueries['InsertEscuela'], {
+    '@id': id,
+    '@nombre': data.nombre,
+    '@googleId': data.googleId
+  }, function(err) {
+    if(err) {
+      callback('ERROR al correr InsertEscuela: ' + err);
+    } else if(this.changes == 0) {
+      callback('ERROR de permisos');
+    } else {
+      callback(null);
+    }
+  });
+}
+
+function insertLlave(id, googleId, callback) {
+  db.run(sqlQueries['InsertLlave'], {
+    '@id': id,
+    '@googleId': googleId
+  }, function(err) {
+    if(err) {
+      callback('ERROR al correr InsertEscuela: ' + err);
+    } else if(this.changes == 0) {
+      callback('ERROR de permisos');
+    } else {
+      callback(null);
+    }
+  });
+}
+
 function insertEstudiante(id, data, callback) {
   db.run(sqlQueries['InsertEstudiante'], {
     '@id': id,
     '@edad': data.edad,
     '@sexo': data.sexo,
+    '@programa': data.programa,
     '@escuela': data.escuela,
     '@ocupacionFutura': data['ocupacion-futura'],
-    '@nivelEstudiosFuturo': data['nivel-estudios'],
+    '@nivelEstudiosFuturoId': data['nivel-estudios'],
     '@admiracion': data.admiracion,
     '@juegoFavorito': data['juego-favorito'],
     '@comunidadSegura': data['comunidad-segura'],
@@ -91,12 +163,14 @@ function insertEstudiante(id, data, callback) {
     '@crearRobot': data['crear-robot'],
     '@disminuirViolencia': data['disminuir-violencia'],
     '@comoDisminuirViolencia': data['como-disminuir-violencia'],
-    '@location': null,
-    '@createdBy': null
+    '@location': ' ',
+    '@llave': data.llave
   }, function(err) {
     if(err) {
       insertEstudianteError();
       callback('ERROR al correr InsertEstudiante: ' + err);
+    } else if(this.changes == 0) {
+      callback('ERROR de llave');
     } else {
       let callbacks = [
         insertEstudianteTemasInteres,
@@ -116,12 +190,15 @@ function insertEstudiante(id, data, callback) {
 
 function insertEstudianteTemasInteres(id, data, callbacks) {
   let insertedTemas = 0;
+  if(data['temas-interes'].length == 0) {
+    let cb = callbacks.shift();
+    cb(id, data, callbacks);
+  }
   data['temas-interes'].forEach(function(tema, index, array) {
     db.run(sqlQueries['InsertEstudianteTemasInteres'], {
       '@id': generateRandomID(),
       '@estudianteId': id,
-      '@temaInteres': tema,
-      '@createdBy': null
+      '@temaInteres': tema
     }, function(err) {
       if(err) {
         let cb = callbacks.pop();
@@ -140,12 +217,15 @@ function insertEstudianteTemasInteres(id, data, callbacks) {
 
 function insertEstudianteTiposProblema(id, data, callbacks) {
   let insertedProblemas = 0;
+  if(data['problemas-familia'].length == 0) {
+    let cb = callbacks.shift();
+    cb(id, data, callbacks);
+  }
   data['problemas-familia'].forEach(function(problema, index, array) {
     db.run(sqlQueries['InsertEstudianteTiposProblema'], {
       '@id': generateRandomID(),
       '@estudianteId': id,
-      '@tipoProblemaId': problema,
-      '@createdBy': null
+      '@tipoProblemaId': problema
     }, function(err) {
       if(err) {
         let cb = callbacks.pop();
@@ -164,12 +244,15 @@ function insertEstudianteTiposProblema(id, data, callbacks) {
 
 function insertEstudianteTiposTecnologiaCasa(id, data, callbacks) {
   let insertedTipos = 0;
+  if(data['tecnologias-casa'].length == 0) {
+    let cb = callbacks.shift();
+    cb(id, data, callbacks);
+  }
   data['tecnologias-casa'].forEach(function(tecnologia, index, array) {
     db.run(sqlQueries['InsertEstudianteTiposTecnologiaCasa'], {
       '@id': generateRandomID(),
       '@estudianteId': id,
-      '@tipoTecnologiaId': tecnologia,
-      '@createdBy': null
+      '@tipoTecnologiaId': tecnologia
     }, function(err) {
       if(err) {
         let cb = callbacks.pop();
@@ -188,12 +271,15 @@ function insertEstudianteTiposTecnologiaCasa(id, data, callbacks) {
 
 function insertEstudianteTiposTecnologiaEscuela(id, data, callbacks) {
   let insertedTipos = 0;
+  if(data['tecnologias-escuela'].length == 0) {
+    let cb = callbacks.shift();
+    cb(id, data, callbacks);
+  }
   data['tecnologias-escuela'].forEach(function(tecnologia, index, array) {
     db.run(sqlQueries['InsertEstudianteTiposTecnologiaEscuela'], {
       '@id': generateRandomID(),
       '@estudianteId': id,
-      '@tipoTecnologiaId': tecnologia,
-      '@createdBy': null
+      '@tipoTecnologiaId': tecnologia
     }, function(err) {
       if(err) {
         let cb = callbacks.pop();
@@ -212,12 +298,15 @@ function insertEstudianteTiposTecnologiaEscuela(id, data, callbacks) {
 
 function insertEstudianteTiposViolencia(id, data, callbacks) {
   let insertedViolencia = 0;
+  if(data['tipos-violencia'].length == 0) {
+    let cb = callbacks.shift();
+    cb(id, data, callbacks);
+  }
   data['tipos-violencia'].forEach(function(violencia, index, array) {
     db.run(sqlQueries['InsertEstudianteTiposViolencia'], {
       '@id': generateRandomID(),
       '@estudianteId': id,
-      '@tipoViolenciaId': violencia,
-      '@createdBy': null
+      '@tipoViolenciaId': violencia
     }, function(err) {
       if(err) {
         let cb = callbacks.pop();
@@ -236,12 +325,15 @@ function insertEstudianteTiposViolencia(id, data, callbacks) {
 
 function insertEstudianteTiposViolenciaPracticada(id, data, callbacks) {
   let insertedViolencia = 0;
+  if(data['violencia-practicada'].length == 0) {
+    let cb = callbacks.shift();
+    cb(id, data, callbacks);
+  }
   data['violencia-practicada'].forEach(function(violencia, index, array) {
     db.run(sqlQueries['InsertEstudianteTiposViolenciaPracticada'], {
       '@id': generateRandomID(),
       '@estudianteId': id,
-      '@tipoViolenciaId': violencia,
-      '@createdBy': null
+      '@tipoViolenciaId': violencia
     }, function(err) {
       if(err) {
         let cb = callbacks.pop();
@@ -260,14 +352,17 @@ function insertEstudianteTiposViolenciaPracticada(id, data, callbacks) {
 
 function insertFamiliares(id, data, callbacks) {
   let insertedFamiliar = 0;
+  if(data.familiares.length == 0) {
+    let cb = callbacks.shift();
+    cb(null);
+  }
   data.familiares.forEach(function(familiar, index, array) {
     db.run(sqlQueries['InsertFamiliar'], {
       '@id': generateRandomID(),
       '@estudianteId': id,
       '@parentescoId': familiar.parentesco,
       '@edad': familiar.edad,
-      '@ocupacion': familiar.ocupacion,
-      '@createdBy': null
+      '@ocupacion': familiar.ocupacion
     }, function(err) {
       if(err) {
         let cb = callbacks.pop();
@@ -301,7 +396,11 @@ function readQueries(callback) {
     'InsertEstudianteTiposTecnologiaEscuela',
     'InsertEstudianteTiposViolenciaPracticada',
     'InsertEstudianteTiposViolencia',
-    'InsertFamiliar'
+    'InsertFamiliar',
+    'InsertUser',
+    'InsertPrograma',
+    'InsertEscuela',
+    'InsertLlave'
   ].forEach(function(query, index, array) {
     fs.readFile('sql/' + query + '.sql', 'utf8', function(err, data) {
       if(err) {
@@ -320,4 +419,8 @@ function readQueries(callback) {
 exports.getData = getData;
 exports.readQueries = readQueries;
 exports.insertEstudiante = insertEstudiante;
+exports.insertUser = insertUser;
+exports.insertPrograma = insertPrograma;
+exports.insertEscuela = insertEscuela;
+exports.insertLlave = insertLlave;
 exports.generateRandomID = generateRandomID;

@@ -1,66 +1,104 @@
+CREATE TABLE Users (
+  id INTEGER NOT NULL
+  ,googleId TEXT UNIQUE
+  ,email TEXT
+  ,nombres TEXT
+  ,apellidos TEXT
+  ,permissions INTEGER
+  ,timestamp TEXT
+  ,PRIMARY KEY(id)
+);
+
+INSERT INTO
+  Users
+VALUES
+  (0, '100778134186629482578', 'javier.rizzo@ceu16.edu.mx', 'Javier', 'Rizzo Aguirre', 10, Datetime('now'));
+
+CREATE TABLE Llaves (
+  id TEXT NOT NULL
+  ,createdById INTEGER
+  ,timestamp TEXT
+  ,PRIMARY KEY(id)
+  ,FOREIGN KEY(createdById) REFERENCES Users(id)
+);
+
 CREATE TABLE Estudiantes (
   id INTEGER NOT NULL
-  ,edad INTEGER
-  ,sexo INTEGER
+  ,edad INTEGER CHECK(edad >= 0 AND edad <= 99)
+  ,sexo INTEGER CHECK(sexo >= 0 AND sexo <= 2)
+  ,programa INTEGER
   ,escuela INTEGER
-  ,ocupacionFutura TEXT
+  ,ocupacionFutura TEXT CHECK(ocupacionFutura <> '')
   ,nivelEstudiosFuturoId INTEGER
-  ,admiracion TEXT
-  ,juegoFavorito TEXT
-  ,comunidadSegura INTEGER
-  ,significadoViolencia TEXT
-  ,victimaViolencia INTEGER
-  ,personaViolenta INTEGER
-  ,personaCreativa INTEGER
-  ,crearRobot INTEGER
-  ,disminuirViolencia INTEGER
-  ,comoDisminuirViolencia TEXT
+  ,admiracion TEXT CHECK(admiracion <> '')
+  ,juegoFavorito TEXT CHECK(juegoFavorito <> '')
+  ,comunidadSegura INTEGER CHECK(comunidadSegura = 1 OR comunidadSegura = 0)
+  ,significadoViolencia TEXT CHECK(significadoViolencia <> '')
+  ,victimaViolencia INTEGER CHECK(victimaViolencia = 1 OR victimaViolencia = 0)
+  ,personaViolenta INTEGER CHECK(personaViolenta = 1 OR personaViolenta = 0)
+  ,personaCreativa INTEGER CHECK(personaCreativa = 1 OR personaCreativa = 0)
+  ,crearRobot INTEGER CHECK(crearRobot = 1 OR crearRobot = 0)
+  ,disminuirViolencia INTEGER CHECK(disminuirViolencia = 0 OR disminuirViolencia = 1)
+  ,comoDisminuirViolencia TEXT CHECK(comoDisminuirViolencia <> '')
   ,location TEXT
   ,timestamp TEXT
-  ,createdBy TEXT
+  ,createdById INTEGER
   ,PRIMARY KEY(id)
+  ,FOREIGN KEY(programa) REFERENCES Programas(id)
   ,FOREIGN KEY(escuela) REFERENCES Escuelas(id)
   ,FOREIGN KEY(nivelEstudiosFuturoId) REFERENCES NivelesEstudios(id)
+  ,FOREIGN KEY(createdById) REFERENCES Users(id)
 );
 
 CREATE TABLE Escuelas (
   id INTEGER NOT NULL
-  ,nombre TEXT
-  ,timestamp TEXT
-  ,createdBy TEXT
+  ,nombre TEXT UNIQUE CHECK(nombre <> '')
+  ,createdById INTEGER
   ,PRIMARY KEY(id)
+  ,FOREIGN KEY(createdById) REFERENCES Users(id)
 );
 
 INSERT INTO
   Escuelas
 VALUES
-  (0, 'El Garage Project Hub', Datetime('now'), 'root');
+  (0, '16 de Septiembre', 0);
+
+CREATE TABLE Programas (
+  id INTEGER NOT NULL
+  ,nombre TEXT UNIQUE CHECK(nombre <> '')
+  ,createdById INTEGER
+  ,PRIMARY KEY(id)
+  ,FOREIGN KEY(createdById) REFERENCES Users(id)
+);
+
+INSERT INTO
+  Programas
+VALUES
+  (0, 'El Garage Project Hub', 0);
 
 CREATE TABLE TemasInteres (
   id INTEGER NOT NULL
-  ,tema TEXT
-  ,timestamp TEXT
-  ,createdBy TEXT
+  ,tema TEXT CHECK(tema <> '')
+  ,createdById INTEGER
   ,PRIMARY KEY(id)
+  ,FOREIGN KEY(createdById) REFERENCES Users(id)
 );
 
 INSERT INTO
   TemasInteres
 VALUES
-  (0, 'Política', Datetime('now'), 'root')
-  ,(1, 'Nuevos inventos', Datetime('now'), 'root')
-  ,(2, 'Nuevos descubrimientos científicos', Datetime('now'), 'root')
-  ,(3, 'Contaminación ambiental', Datetime('now'), 'root')
-  ,(4, 'Sociales y espectáculos', Datetime('now'), 'root')
-  ,(5, 'Arte', Datetime('now'), 'root')
-  ,(6, 'Otro', Datetime('now'), 'root');
+  (0, 'Política', 0)
+  ,(1, 'Nuevos inventos', 0)
+  ,(2, 'Nuevos descubrimientos científicos', 0)
+  ,(3, 'Contaminación ambiental', 0)
+  ,(4, 'Sociales y espectáculos', 0)
+  ,(5, 'Arte', 0)
+  ,(6, 'Otro', 0);
 
 CREATE TABLE EstudianteTemasInteres (
   id INTEGER NOT NULL
   ,estudianteId INTEGER
   ,temaInteresId INTEGER
-  ,timestamp TEXT
-  ,createdBy TEXT
   ,PRIMARY KEY(id)
   ,FOREIGN KEY(estudianteId) REFERENCES Estudiantes(id)
   ,FOREIGN KEY(temaInteresId) REFERENCES TemasInteres(id)
@@ -68,27 +106,25 @@ CREATE TABLE EstudianteTemasInteres (
 
 CREATE TABLE TiposTecnologiaEscuela (
   id INTEGER NOT NULL
-  ,tecnologia TEXT
-  ,timestamp TEXT
-  ,createdBy TEXT
+  ,tecnologia TEXT CHECK(tecnologia <> '')
+  ,createdById INTEGER
   ,PRIMARY KEY(id)
+  ,FOREIGN KEY(createdById) REFERENCES Users(id)
 );
 
 INSERT INTO
   TiposTecnologiaEscuela
 VALUES
-  (0, 'Computadora', Datetime('now'), 'root')
-  ,(1, 'Internet', Datetime('now'), 'root')
-  ,(2, 'Cañón/Proyector', Datetime('now'), 'root')
-  ,(3, 'Celular', Datetime('now'), 'root')
-  ,(4, 'Televisión', Datetime('now'), 'root');
+  (0, 'Computadora', 0)
+  ,(1, 'Internet', 0)
+  ,(2, 'Cañón/Proyector', 0)
+  ,(3, 'Celular', 0)
+  ,(4, 'Televisión', 0);
 
 CREATE TABLE EstudianteTiposTecnologiaEscuela (
   id INTEGER NOT NULL
   ,estudianteId INTEGER
   ,tipoTecnologiaId INTEGER
-  ,timestamp TEXT
-  ,createdBy TEXT
   ,PRIMARY KEY(id)
   ,FOREIGN KEY(estudianteId) REFERENCES Estudiantes(id)
   ,FOREIGN KEY(tipoTecnologiaId) REFERENCES TiposTecnologiaEscuela(Id)
@@ -96,29 +132,27 @@ CREATE TABLE EstudianteTiposTecnologiaEscuela (
 
 CREATE TABLE TiposTecnologiaCasa (
   id INTEGER NOT NULL
-  ,tecnologia TEXT
-  ,timestamp TEXT
-  ,createdBy TEXT
+  ,tecnologia TEXT CHECK(tecnologia <> '')
+  ,createdById INTEGER
   ,PRIMARY KEY(id)
+  ,FOREIGN KEY(createdById) REFERENCES Users(id)
 );
 
 INSERT INTO
   TiposTecnologiaCasa
 VALUES
-  (0, 'Televisión', Datetime('now'), 'root')
-  ,(1, 'Carro', Datetime('now'), 'root')
-  ,(2, 'Celular', Datetime('now'), 'root')
-  ,(3, 'Internet', Datetime('now'), 'root')
-  ,(4, 'Tablet', Datetime('now'), 'root')
-  ,(5, 'Laptop', Datetime('now'), 'root')
-  ,(6, 'Consola de videojuegos', Datetime('now'), 'root');
+  (0, 'Televisión', 0)
+  ,(1, 'Carro', 0)
+  ,(2, 'Celular', 0)
+  ,(3, 'Internet', 0)
+  ,(4, 'Tablet', 0)
+  ,(5, 'Laptop', 0)
+  ,(6, 'Consola de videojuegos', 0);
 
 CREATE TABLE EstudianteTiposTecnologiaCasa (
   id INTEGER NOT NULL
   ,estudianteId INTEGER
   ,tipoTecnologiaId INTEGER
-  ,timestamp TEXT
-  ,createdBy TEXT
   ,PRIMARY KEY(id)
   ,FOREIGN KEY(estudianteId) REFERENCES Estudiantes(id)
   ,FOREIGN KEY(tipoTecnologiaId) REFERENCES TiposTecnologiaCasa(id)
@@ -126,30 +160,28 @@ CREATE TABLE EstudianteTiposTecnologiaCasa (
 
 CREATE TABLE TiposProblemaFamilia (
   id INTEGER NOT NULL
-  ,problema TEXT
-  ,timestamp TEXT
-  ,createdBy TEXT
+  ,problema TEXT CHECK(problema <> '')
+  ,createdById INTEGER
   ,PRIMARY KEY(id)
+  ,FOREIGN KEY(createdById) REFERENCES Users(id)
 );
 
 INSERT INTO
   TiposProblemaFamilia
 VALUES
-  (0, 'Violencia', Datetime('now'), 'root')
-  ,(1, 'Alcoholismo', Datetime('now'), 'root')
-  ,(2, 'Bullying', Datetime('now'), 'root')
-  ,(3, 'Drogas', Datetime('now'), 'root')
-  ,(4, 'Enfermedades', Datetime('now'), 'root')
-  ,(5, 'Desempleo', Datetime('now'), 'root')
-  ,(6, 'Ninguno', Datetime('now'), 'root')
-  ,(7, 'Otro', Datetime('now'), 'root');
+  (0, 'Violencia', 0)
+  ,(1, 'Alcoholismo', 0)
+  ,(2, 'Bullying', 0)
+  ,(3, 'Drogas', 0)
+  ,(4, 'Enfermedades', 0)
+  ,(5, 'Desempleo', 0)
+  ,(6, 'Ninguno', 0)
+  ,(7, 'Otro', 0);
 
 CREATE TABLE EstudianteTiposProblema (
   id INTEGER NOT NULL
   ,estudianteId INTEGER
   ,tipoProblemaFamiliaId INTEGER
-  ,timestamp TEXT
-  ,createdBy TEXT
   ,PRIMARY KEY(id)
   ,FOREIGN KEY(estudianteId) REFERENCES Estudiantes(id)
   ,FOREIGN KEY(tipoProblemaFamiliaId) REFERENCES TiposProblemaFamilia(id)
@@ -157,27 +189,25 @@ CREATE TABLE EstudianteTiposProblema (
 
 CREATE TABLE TiposViolencia (
   id INTEGER NOT NULL
-  ,tipo TEXT
-  ,timestamp TEXT
-  ,createdBy TEXT
+  ,tipo TEXT CHECK(tipo <> '')
+  ,createdById INTEGER
   ,PRIMARY KEY(id)
+  ,FOREIGN KEY(createdById) REFERENCES Users(id)
 );
 
 INSERT INTO
   TiposViolencia
 VALUES
-  (0, 'Física', Datetime('now'), 'root')
-  ,(1, 'Psicológica', Datetime('now'), 'root')
-  ,(2, 'Sexual', Datetime('now'), 'root')
-  ,(3, 'Verbal', Datetime('now'), 'root')
-  ,(4, 'Otra', Datetime('now'), 'root');
+  (0, 'Física', 0)
+  ,(1, 'Psicológica', 0)
+  ,(2, 'Sexual', 0)
+  ,(3, 'Verbal', 0)
+  ,(4, 'Otra', 0);
 
 CREATE TABLE EstudianteTiposViolenciaVictima (
   id INTEGER NOT NULL
   ,estudianteId INTEGER
   ,tipoViolenciaId INTEGER
-  ,timestamp TEXT
-  ,createdBy TEXT
   ,PRIMARY KEY(id)
   ,FOREIGN KEY(estudianteId) REFERENCES Estudiantes(id)
   ,FOREIGN KEY(tipoViolenciaId) REFERENCES TiposViolencia(id)
@@ -187,8 +217,6 @@ CREATE TABLE EstudianteTiposViolenciaPracticados (
   id INTEGER NOT NULL
   ,estudianteId INTEGER
   ,tipoViolenciaId INTEGER
-  ,timestamp TEXT
-  ,createdBy TEXT
   ,PRIMARY KEY(id)
   ,FOREIGN KEY(estudianteId) REFERENCES Estudiantes(id)
   ,FOREIGN KEY(tipoViolenciaId) REFERENCES TiposViolencia(id)
@@ -196,31 +224,29 @@ CREATE TABLE EstudianteTiposViolenciaPracticados (
 
 CREATE TABLE NivelesEstudios (
   id INTEGER NOT NULL
-  ,nivel TEXT
-  ,timestamp TEXT
-  ,createdBy TEXT
+  ,nivel TEXT CHECK(nivel <> '')
+  ,createdById INTEGER
   ,PRIMARY KEY(id)
+  ,FOREIGN KEY(createdById) REFERENCES Users(id)
 );
 
 INSERT INTO
   NivelesEstudios
 VALUES
-  (0, 'Secundaria', Datetime('now'), 'root')
-  ,(1, 'Preparatoria', Datetime('now'), 'root')
-  ,(2, 'Estudios técnicos', Datetime('now'), 'root')
-  ,(3, 'Universidad', Datetime('now'), 'root')
-  ,(4, 'Maestría', Datetime('now'), 'root')
-  ,(5, 'Doctorado', Datetime('now'), 'root')
-  ,(6, 'No sé', Datetime('now'), 'root');
+  (0, 'Secundaria', 0)
+  ,(1, 'Preparatoria', 0)
+  ,(2, 'Estudios técnicos', 0)
+  ,(3, 'Universidad', 0)
+  ,(4, 'Maestría', 0)
+  ,(5, 'Doctorado', 0)
+  ,(6, 'No sé', 0);
 
 CREATE TABLE Familiares (
   id INTEGER NOT NULL
   ,estudianteId INTEGER
   ,parentescoId INTEGER
-  ,edad INTEGER
-  ,ocupacion TEXT
-  ,timestamp TEXT
-  ,createdBy TEXT
+  ,edad INTEGER CHECK(edad >= 0 AND edad <= 99)
+  ,ocupacion TEXT CHECK(ocupacion <> '')
   ,PRIMARY KEY(id)
   ,FOREIGN KEY(estudianteId) REFERENCES Estudiantes(id)
   ,FOREIGN KEY(parentescoId) REFERENCES Parentesco(id)
@@ -228,17 +254,19 @@ CREATE TABLE Familiares (
 
 CREATE TABLE Parentesco (
   id INTEGER NOT NULL
-  ,nombre TEXT
+  ,nombre TEXT CHECK(nombre <> '')
+  ,createdById TEXT
   ,PRIMARY KEY(id)
+  ,FOREIGN KEY(createdById) REFERENCES Users(Id)
 );
 
 INSERT INTO
   Parentesco
 VALUES
-  (0, 'Padre')
-  ,(1, 'Madre')
-  ,(2, 'Hermano(a)')
-  ,(3, 'Abuelo(a)')
-  ,(4, 'Tio(a)')
-  ,(5, 'Primo(a)')
-  ,(6, 'Otro');
+  (0, 'Padre', 0)
+  ,(1, 'Madre', 0)
+  ,(2, 'Hermano(a)', 0)
+  ,(3, 'Abuelo(a)', 0)
+  ,(4, 'Tio(a)', 0)
+  ,(5, 'Primo(a)', 0)
+  ,(6, 'Otro', 0);

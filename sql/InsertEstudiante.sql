@@ -1,12 +1,13 @@
 INSERT INTO
   Estudiantes
-VALUES (
+SELECT
   @id
   ,@edad
   ,@sexo
+  ,@programa
   ,@escuela
   ,@ocupacionFutura
-  ,@nivelEstudiosFuturo
+  ,@nivelEstudiosFuturoId
   ,@admiracion
   ,@juegoFavorito
   ,@comunidadSegura
@@ -19,5 +20,17 @@ VALUES (
   ,@comoDisminuirViolencia
   ,@location
   ,Datetime('now')
-  ,@createdBy
-);
+  ,id
+FROM
+  (
+    SELECT
+      Users.id
+    FROM
+      Llaves
+      INNER JOIN Users
+        ON Users.id = Llaves.createdById
+    WHERE
+      Llaves.id = @llave
+      AND Datetime(llaves.timestamp, '+2 hours') > Datetime('now')
+    LIMIT 1
+  );

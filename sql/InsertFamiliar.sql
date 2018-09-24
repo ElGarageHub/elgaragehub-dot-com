@@ -6,6 +6,4 @@ VALUES (
   ,@parentescoId
   ,@edad
   ,@ocupacion
-  ,Datetime('now')
-  ,@createdBy
 );
