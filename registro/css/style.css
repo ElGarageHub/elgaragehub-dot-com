@@ -1,19 +1,28 @@
 body {
   background-color: #FFF;
   font-size: 16px;
-  color: rgb(44, 57, 93);
+  background-color: rgb(44, 57, 93);
   height: 100%;
+  padding-top: 35px;
+  padding-bottom: 35px;
 }
 
-h1 {
+h1, h2 {
+  color: rgb(44, 57, 93);
   text-align: center;
+  font-size: 3em;
+  font-family: Xolonium, sans-serif;
+}
+
+h2 {
+  font-size: 2em;
 }
 
 .form-container {
   max-width: 650px;
   margin-left: auto;
   margin-right: auto;
-  background-color: #fAfAfA;
+  background-color: #f0f0f0;
   padding: 40px;
 }
 
@@ -25,15 +34,37 @@ select, input[type="text"] {
 
 select {
   width: 100%;
-  font-size: 16px;
-  padding: 2px;
+  background: url(../media/select.png) no-repeat 98% center;
+  height: 35px;
+  font-size: 14px;
+  padding: 5px;
+  background-color: #FFFFFF;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  -ms-box-sizing:content-box;
+  -moz-box-sizing:content-box;
+  -webkit-box-sizing:content-box; 
+  box-sizing:content-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
 }
 
 input[type="text"] {
-  font-size: 16px;
+  font-size: 14px;
   width: 100%;
-  padding: 2px;
+  height: 35px;
+  padding: 5px;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  border: 1px solid #ccc;
+  -ms-box-sizing:content-box;
+  -moz-box-sizing:content-box;
+  -webkit-box-sizing:content-box; 
+  box-sizing:content-box;
 }
+
 
 input.nombre {
   width: 45%;
@@ -51,11 +82,26 @@ table, th, td {
 
 table#familiares, table#familiares th, table#familiares td {
   border-width: 1px;
+  background-color: #FFFFFF;
+}
+
+table#familiares select {
+  -ms-box-sizing:default;
+  -moz-box-sizing:default;
+  -webkit-box-sizing:default; 
+  box-sizing:default;
+  width: 90%;
 }
 
 table {
   width: 100%;
   margin: 15px;
+  margin-left: 0;
+  margin-rigth: 0;
+  -ms-box-sizing:content-box;
+  -moz-box-sizing:content-box;
+  -webkit-box-sizing:content-box; 
+  box-sizing:content-box;
 }
 
 .table-remove, .table-add {
@@ -78,6 +124,14 @@ table input[type="text"] {
 button {
   display: block;
   margin: auto;
-  font-size: 16px;
   padding: 5px 15px;
+  height: 35px;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  overflow: hidden;
+  border: 1px solid #ccc;
+}
+
+.error-msg {
+  color: #FF0000;
 }

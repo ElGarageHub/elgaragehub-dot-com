@@ -201,6 +201,7 @@ function tableCreateParentescoSelect() {
 
 function tableCreateProfesionInput() {
   var input = document.createElement('input');
+  input.setAttribute('placeholder', 'Profesión');
   input.type = 'text';
   input.classList.add('familiar-profesion');
   return input;

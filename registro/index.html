@@ -42,8 +42,11 @@
   <body>
     <div class="cuadros">
       <div class="form-container">
-        <h1>Registro</h1>
-        <form>
+        <h1>REGISTRO</h1>
+        <div id="success" style="display:none;">
+          <h2>El formulario fue enviado satisfactoriamente.</h2>
+        </div>
+        <form id="form">
           <select id="programa" name="programa">
             <option value="">--Programa--</option>
           </select>
@@ -145,12 +148,14 @@
           </select>
           <input id="como-disminuir-violencia" type="text" placeholder="¿Cómo?">
           <input id="llave" type="text" placeholder="Llave proporcionada por el instructor.">
+          <p class="error-msg"></p>
           <button type="button" onclick="sendData();">Enviar</button>
         </form>
       </div>
     </div>
   </body>
   <script>window.$ = document.querySelectorAll.bind(document);</script>
+  <script src="js/main.js"></script>
   <script src="js/populate-fields.js"></script>
   <script src="js/send-data.js"></script>
 </html>
