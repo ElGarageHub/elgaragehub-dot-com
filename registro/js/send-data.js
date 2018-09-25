@@ -32,6 +32,9 @@ function generateJSON() {
     'llave'
   ].forEach(function(item) {
     data[item] = $('#' + item)[0].value;
+    if(item == 'como-disminuir-violencia' && data[item] == '') {
+      data[item] = null;
+    }
   });
 
   data.familiares = [];

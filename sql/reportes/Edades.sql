@@ -4,7 +4,9 @@ SELECT E.edad, m, f, o FROM
     SELECT DISTINCT
     edad
     FROM
-    Estudiantes) E
+    Estudiantes
+    WHERE
+    edad IS NOT NULL) E
   LEFT JOIN
   (
     SELECT
