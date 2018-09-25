@@ -199,7 +199,7 @@ function insertEstudiante(id, data, callback) {
     '@disminuirViolencia': data['disminuir-violencia'],
     '@comoDisminuirViolencia': data['como-disminuir-violencia'],
     '@location': ' ',
-    '@llave': data.llave
+    '@llave': data.llave.toUpperCase()
   }, function(err) {
     if(err) {
       insertEstudianteError();
