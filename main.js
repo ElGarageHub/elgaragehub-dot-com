@@ -166,7 +166,17 @@ app.post('/gen-llave', function(req, res) {
 app.get('/get-data', function(req, res) {
   db.getData(req.query.data, function(err, data) {
     if(err) {
-      error(err);
+      console.log(err);
+    } else {
+      res.send(JSON.stringify(data));
+    }
+  });
+});
+
+app.get('/get-stat', function(req, res) {
+  db.getStat(req.query.data, function(err, data) {
+    if(err) {
+      console.log(err);
     } else {
       res.send(JSON.stringify(data));
     }
