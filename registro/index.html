@@ -42,8 +42,12 @@
   <body>
     <div class="cuadros">
       <div class="form-container">
-        <h1>Registro</h1>
-        <form>
+        <img class="logo" src="../media/logo.png" alt="El Garage Project Hub">
+        <h1>REGISTRO</h1>
+        <div id="success" style="display:none;">
+          <h2>El formulario fue enviado satisfactoriamente.</h2>
+        </div>
+        <form id="form">
           <select id="programa" name="programa">
             <option value="">--Programa--</option>
           </select>
@@ -76,18 +80,19 @@
               <td></td>
             </tr>
           </table>
-          <input id="ocupacion-futura" type="text" placeholder="¿Qué quieres ser cuando seas grande?">
+          <p class="tip">(Presiona '+' para añadir a las personas que viven en tu casa).</p>
+          <input id="ocupacion-futura" type="text" autocomplete="off" placeholder="¿Qué quieres ser cuando seas grande?">
           <select id="nivel-estudios" name="nivel-estudios">
             <option value="">-- ¿Qué nivel de estudios esperas alcanzar? --</option>
           </select>
-          <input id="admiracion" type="text" placeholder="¿A quién admiras / quién es tu ejemplo a seguir?">
-          <input id="juego-favorito" type="text" placeholder="¿Cuál es tu juego o juguete favorito?">
+          <input id="admiracion" type="text" autocomplete="off" placeholder="¿A quién admiras / quién es tu ejemplo a seguir?">
+          <input id="juego-favorito" type="text" autocomplete="off" placeholder="¿Cuál es tu juego o juguete favorito?">
           <select id="comunidad-segura" name="comunidad-segura">
             <option value="">-- ¿Consideras que tu colonia/comunidad es segura? --</option>
             <option value="1">Sí</option>
             <option value="0">No</option>
           </select>
-          <input id="significado-violencia" type="text" placeholder="Para ti, ¿qué es la violencia?">
+          <input id="significado-violencia" type="text" autocomplete="off" placeholder="Para ti, ¿qué es la violencia?">
           <select id="victima-violencia" name="victima-violencia">
             <option value="">-- ¿Has sido víctima de algún tipo de violencia? --</option>
             <option value="1">Sí</option>
@@ -143,14 +148,16 @@
             <option value="1">Sí</option>
             <option value="0">No</option>
           </select>
-          <input id="como-disminuir-violencia" type="text" placeholder="¿Cómo?">
-          <input id="llave" type="text" placeholder="Llave proporcionada por el instructor.">
+          <input id="como-disminuir-violencia" type="text" autocomplete="off" placeholder="¿Cómo?">
+          <input id="llave" type="text" autocomplete="off" placeholder="Llave proporcionada por el instructor.">
+          <p class="error-msg"></p>
           <button type="button" onclick="sendData();">Enviar</button>
         </form>
       </div>
     </div>
   </body>
   <script>window.$ = document.querySelectorAll.bind(document);</script>
+  <script src="js/main.js"></script>
   <script src="js/populate-fields.js"></script>
   <script src="js/send-data.js"></script>
 </html>

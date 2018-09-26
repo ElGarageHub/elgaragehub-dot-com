@@ -35,7 +35,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="../../media/favicon/ms-icon-144x144.png">
 
-    <title>Admin | Registro | El Garage Project Hub</title>
+    <title>Estadísticas | Registro | El Garage Project Hub</title>
 
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 
@@ -47,24 +47,19 @@
         <img class="logo" src="../../media/logo.png" alt="El Garage Project Hub">
         <div class="g-signin2" data-onsuccess="onSignIn" style="margin-left: auto; margin-right: auto; display: block;"></div>
         <a href="#" onclick="signOut();">Sign out</a>
-        <h1>ADMIN REGISTRO</h1>
-        <h2>GENERAR LLAVES</h2>
-        <h3 id="llave"> </h3>
-        <button onclick="genLlave();">Generar Llave</button>
-        <hr>
-        <h2>AGREGAR RESPUESTAS</h2>
-        <h3>PROGRAMAS</h3>
-        <input id="programa" type="text" placeholder="Nombre del programa">
-        <button onclick="addPrograma();">Agregar Programa</button>
-        <h3>ESCUELAS</h3>
-        <input id="escuela" type="text" placeholder="Nombre de la escuela">
-        <button onclick="addEscuela();">Agregar Escuela</button>
+        <h1>ESTADÍSTICAS</h1>
+        <ul>
+          <li><a href="edades/">Edades y géneros</a></li>
+          <li><a href="estudios/">Niveles de estudios</a></li>
+          <li><a href="juego-favorito/">Juego Favorito</a></li>
+          <li><a href="ocupacion-futura/">Ocupación futura</a></li>
+          <li><a href="admiracion/">Admiración</a></li>
+        </ul>
       </div>
     </div>
     <script>window.$ = document.querySelectorAll.bind(document);</script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="js/main.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/send-data.js"></script>
+    <script src="../js/auth.js"></script>
   </body>
 </html>

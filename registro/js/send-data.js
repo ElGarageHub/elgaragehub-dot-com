@@ -32,6 +32,9 @@ function generateJSON() {
     'llave'
   ].forEach(function(item) {
     data[item] = $('#' + item)[0].value;
+    if(item == 'como-disminuir-violencia' && data[item] == '') {
+      data[item] = null;
+    }
   });
 
   data.familiares = [];
@@ -71,6 +74,17 @@ function sendData() {
   request.setRequestHeader("Content-Type", "application/json");
   request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
+      var res = JSON.parse(request.responseText);
+      if(res.stat == 'error') {
+        if(res.message.includes('llave')) {
+          $('.error-msg')[0].innerHTML = 'Error. Verifica que la "llave" proporcionada por tu instructor sea la correcta.';
+        } else {
+          $('.error-msg')[0].innerHTML = 'Error. Verifica que hayas llenado todos los campos correctamente.';
+        }
+      } else if(res.stat == 'ok') {
+        $('#form')[0].style.display = 'none';
+        $('#success')[0].style.display = 'block';
+      }
     }
   };
   request.send(JSON.stringify(data));

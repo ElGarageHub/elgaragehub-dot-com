@@ -16,6 +16,41 @@ function generateRandomID() {
   return Math.round(Math.random() * Math.pow(10, 18));
 }
 
+function getStat(data, callback) {
+  switch(data) {
+    case 'edades':
+      db.all(sqlQueries['reportes/Edades'], function(err, rows) {
+        if(err) callback('ERROR al correr reportes/Edades.sql: ' + err);
+        else callback(null, rows);
+      });
+      break;
+    case 'estudios':
+      db.all(sqlQueries['reportes/Estudios'], function(err, rows) {
+        if(err) callback('ERROR al correr reportes/Estudios.sql: ' + err);
+        else callback(null, rows);
+      });
+      break;
+    case 'ocupacion-futura':
+      db.all(sqlQueries['reportes/OcupacionFutura'], function(err, rows) {
+        if(err) callback('ERROR al correr reportes/OcupacionFutura.sql: ' + err);
+        else callback(null, rows);
+      });
+      break;
+    case 'admiracion':
+      db.all(sqlQueries['reportes/Admiracion'], function(err, rows) {
+        if(err) callback('ERROR al correr reportes/Admiracion.sql: ' + err);
+        else callback(null, rows);
+      });
+      break;
+    case 'juego-favorito':
+      db.all(sqlQueries['reportes/JuegoFavorito'], function(err, rows) {
+        if(err) callback('ERROR al correr reportes/JuegoFavorito.sql: ' + err);
+        else callback(null, rows);
+      });
+      break;
+  }
+}
+
 function getData(data, callback) {
   switch(data) {
     case 'escuelas':
@@ -164,7 +199,7 @@ function insertEstudiante(id, data, callback) {
     '@disminuirViolencia': data['disminuir-violencia'],
     '@comoDisminuirViolencia': data['como-disminuir-violencia'],
     '@location': ' ',
-    '@llave': data.llave
+    '@llave': data.llave.toUpperCase()
   }, function(err) {
     if(err) {
       insertEstudianteError();
@@ -400,7 +435,12 @@ function readQueries(callback) {
     'InsertUser',
     'InsertPrograma',
     'InsertEscuela',
-    'InsertLlave'
+    'InsertLlave',
+    'reportes/Edades',
+    'reportes/Estudios',
+    'reportes/OcupacionFutura',
+    'reportes/Admiracion',
+    'reportes/JuegoFavorito'
   ].forEach(function(query, index, array) {
     fs.readFile('sql/' + query + '.sql', 'utf8', function(err, data) {
       if(err) {
@@ -424,3 +464,4 @@ exports.insertPrograma = insertPrograma;
 exports.insertEscuela = insertEscuela;
 exports.insertLlave = insertLlave;
 exports.generateRandomID = generateRandomID;
+exports.getStat = getStat;
