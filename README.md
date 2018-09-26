@@ -2,12 +2,30 @@
 
 El Garage Project Hub Website, deployed to https://elgaragehub.com/
 
+## Requirements
+
+* node
+* npm
+* sqlite3
+
 ## Installation
 
-Just clone the repo and do
+Clone the repo and do
 
 ```
 npm install
+```
+
+Then, create the database by running
+
+```
+sqlite3 database.db
+```
+
+and reading the `sql/CreateTables.sql` file:
+
+```
+.read sql/CreateTables.sql
 ```
 
 ## License

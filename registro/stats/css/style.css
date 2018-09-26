@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fAfAfA;
+}
+
+.container {
+  min-height: 95vh;
+  width: 95vw;
+  margin: auto;
+}
+
+h1 {
+  color: rgb(44, 57, 93);
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#chart {
+  width: 100%;
+  height: 100%;
+}
+
+#wordcloud {
+  width: 90%;
+  height: 90%;
+  margin: auto;
+  display: block;
+}

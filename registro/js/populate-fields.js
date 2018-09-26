@@ -1,5 +1,5 @@
 var nFamiliares = 0;
-var GET_DATA_SERVER = 'http://localhost:9484/get-data?';
+var GET_DATA_SERVER = 'https://elgaragehub.com:9484/get-data?';
 var parentescos = null;
 
 function getJSONData(params, callback) {
@@ -26,6 +26,19 @@ getJSONData('data=escuelas', function(err, escuelas) {
       option.text = escuela.nombre;
       option.value = escuela.id;
       $('#escuela')[0].add(option);
+    });
+  } else {
+    //error
+  }
+});
+
+getJSONData('data=programas', function(err, programas) {
+  if(!err) {
+    programas.forEach(function(programa) {
+      var option = document.createElement('option');
+      option.text = programa.nombre;
+      option.value = programa.id;
+      $('#programa')[0].add(option);
     });
   } else {
     //error
@@ -188,6 +201,8 @@ function tableCreateParentescoSelect() {
 
 function tableCreateProfesionInput() {
   var input = document.createElement('input');
+  input.setAttribute('placeholder', 'Profesión');
+  input.setAttribute('autocomplete', 'off');
   input.type = 'text';
   input.classList.add('familiar-profesion');
   return input;

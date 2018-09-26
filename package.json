@@ -11,8 +11,11 @@
   "dependencies": {
     "animate.css": "^3.6.1",
     "body-parser": "^1.18.3",
+    "chart.js": "^2.7.2",
     "express": "^4.16.2",
     "font-awesome": "^4.7.0",
-    "sqlite3": "^4.0.2"
+    "google-auth-library": "^2.0.0",
+    "sqlite3": "^4.0.2",
+    "wordcloud": "^1.1.0"
   }
 }
