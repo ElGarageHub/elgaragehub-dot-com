@@ -785,3 +785,15 @@ a:link, a:visited, a:hover, a:active {
   width: 100vw;
   height: 100vw;
 }
+
+.wa {
+  color: #FFFFFF;
+  background-color: #00E676;
+  line-height: 40px;
+  width: auto;
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
