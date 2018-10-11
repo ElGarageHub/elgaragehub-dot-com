@@ -174,13 +174,24 @@ app.get('/get-data', function(req, res) {
 });
 
 app.get('/get-stat', function(req, res) {
-  db.getStat(req.query.data, function(err, data) {
-    if(err) {
-      console.log(err);
-    } else {
-      res.send(JSON.stringify(data));
-    }
-  });
+  if(!req.query.programa && req.query.programa != 0) req.query.programa = '%';
+  if(!req.query.escuela && req.query.escuela != 0) req.query.escuela = '%';
+  if(!req.query.sexo && req.query.sexo != 0) req.query.sexo = '%';
+  if(!req.query['edad-min'] && req.query['edad-min'] != 0) req.query['edad-min'] = 0;
+  if(!req.query['edad-max'] && req.query['edad-max'] != 0) req.query['edad-max'] = 99;
+  db.getStat(req.query.data,
+      req.query.programa,
+      req.query.escuela,
+      req.query.sexo,
+      parseInt(req.query['edad-min']),
+      parseInt(req.query['edad-max']),
+      function(err, data) {
+        if(err) {
+          console.log(err);
+        } else {
+          res.send(JSON.stringify(data));
+        }
+      });
 });
 
 (function() {

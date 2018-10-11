@@ -1,20 +1,36 @@
-var SERVER = 'https://elgaragehub.com:9484/';
-var request = new XMLHttpRequest();
+var SERVER = SERVER ||'https://elgaragehub.com:9484/';
 
-request.onreadystatechange = function() {
-  if(this.readyState == 4 && this.status == 200) {
-    var res = JSON.parse(request.responseText);
-    var processed = 0;
-    var data = [];
-    res.forEach(function(item, index, array) {
-      data.push([item.word, item.c]);
-      processed++;
-      if(processed == array.length) {
-        WordCloud(document.getElementById('wordcloud'), {list: data, weightFactor: 2.5} );
-      }
-    });
+var filter = filter || {
+  programa: '%',
+  escuela: '%',
+  sexo: '%',
+  edadMin: 0,
+  edadMax: 99,
+  programaTxt: '--Cualquier programa--',
+  escuelaTxt: '--Cualquier escuela--',
+  sexoTxt: '--Cualquier sexo--'
+};
+
+function getStat() {
+  var request = new XMLHttpRequest();
+
+  request.onreadystatechange = function() {
+    if(this.readyState == 4 && this.status == 200) {
+      var res = JSON.parse(request.responseText);
+      var processed = 0;
+      var data = [];
+      res.forEach(function(item, index, array) {
+        data.push([item.word, item.c]);
+        processed++;
+        if(processed == array.length) {
+          WordCloud(document.getElementById('wordcloud'), {list: data, weightFactor: 50 * 3.5 / array[0].c} );
+        }
+      });
+    }
   }
-}
+  var uri = encodeURI(SERVER + 'get-stat?data=ocupacion-futura&programa=' + filter.programa + '&escuela=' + filter.escuela + '&sexo=' + filter.sexo + '&edad-min=' + filter.edadMin + '&edad-max=' + filter.edadMax);
 
-request.open('GET', SERVER + 'get-stat?data=ocupacion-futura', true);
-request.send();
+  request.open('GET', uri, true);
+  request.send();
+}
+getStat();

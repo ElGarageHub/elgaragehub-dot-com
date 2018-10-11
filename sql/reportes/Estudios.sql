@@ -4,51 +4,61 @@ SELECT
   ,f
   ,o 
 FROM
-(
-  (
-    SELECT DISTINCT
+  ((SELECT DISTINCT
     id
     ,nivel
     FROM
     NivelesEstudios) N
   LEFT JOIN
-  (
-    SELECT
+  (SELECT
     nivelEstudiosFuturoId
     ,Count(*) f
-    FROM
+  FROM
     Estudiantes
-    WHERE
+  WHERE
     sexo = 0
-    GROUP BY
+    AND Coalesce(programa, '') LIKE @programa
+    AND Coalesce(escuela, '') LIKE @escuela
+    AND Coalesce(sexo, '') LIKE @sexo
+    AND Coalesce(edad, 0) >= @edadMin
+    AND Coalesce(edad, 0) <= @edadMax 
+  GROUP BY
     nivelEstudiosFuturoId) F
   ON
-  N.id = F.nivelEstudiosFuturoId
+    N.id = F.nivelEstudiosFuturoId
   LEFT JOIN
-  (
-    SELECT
+  (SELECT
     nivelEstudiosFuturoId
     ,Count(*) m
-    FROM
+  FROM
     Estudiantes
-    WHERE
+  WHERE
     sexo = 1
-    GROUP BY
+    AND Coalesce(programa, '') LIKE @programa
+    AND Coalesce(escuela, '') LIKE @escuela
+    AND Coalesce(sexo, '') LIKE @sexo
+    AND Coalesce(edad, 0) >= @edadMin
+    AND Coalesce(edad, 0) <= @edadMax
+  GROUP BY
     nivelEstudiosFuturoId) M
   ON
-  N.id = M.nivelEstudiosFuturoId
+    N.id = M.nivelEstudiosFuturoId
   LEFT JOIN
-  (
-    SELECT
+  (SELECT
     nivelEstudiosFuturoId
     ,Count(*) o
-    FROM
+  FROM
     Estudiantes
-    WHERE
-    sexo = 2 OR sexo IS NULL
-    GROUP BY
+  WHERE
+    (sexo = 2 OR sexo IS NULL)
+    AND Coalesce(programa, '') LIKE @programa
+    AND Coalesce(escuela, '') LIKE @escuela
+    AND Coalesce(sexo, '') LIKE @sexo
+    AND Coalesce(edad, 0) >= @edadMin
+    AND Coalesce(edad, 0) <= @edadMax 
+  GROUP BY
     nivelEstudiosFuturoId) O
   ON
-  N.id = O.nivelEstudiosFuturoId)
+    N.id = O.nivelEstudiosFuturoId)
 WHERE
   o > 0 OR m > 0 OR f > 0;

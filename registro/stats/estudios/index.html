@@ -38,6 +38,7 @@
     <title>Estadísticas | Registro | El Garage Project Hub</title>
 
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../../node_modules/font-awesome/css/font-awesome.min.css" media="none" onload="if(media!='all')media='all'" />
 
     <meta name="google-signin-client_id" content="326776711119-8f7t8s12tvovim6d4mtlurghli6k6sde.apps.googleusercontent.com">
   </head>
@@ -45,12 +46,65 @@
     <div class="container">
       <div class="g-signin2" data-onsuccess="onSignIn" style="margin-left: auto; margin-right: auto; display: block;"></div>
       <a href="#" onclick="signOut();">Sign out</a>
+      <h1>NIVELES DE ESTUDIOS</h1>
+      <ul class="stat-description">
+        <li>Programa: <span id="stat-description-programa"></span>.</li>
+        <li>Escuela: <span id="stat-description-escuela"></span>.</li>
+        <li>Sexo: <span id="stat-description-sexo"></span>.</li>
+        <li>Rango de edades: <span id="stat-description-edades"></span> años.</li>
+        <li>Total: <span id="stat-description-universo"></span> alumnos.</li>
+        <li><button id="filter-btn"><i class="fa fa-filter" aria-hidden="true"></i> Filtrar</button></li>
+      </ul>
       <canvas id="chart"></canvas>
     </div>
+
+    <div id="filter-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>FILTROS</h2>
+          <span class="close">&times;</span>
+        </div>
+        <br>
+        <div class="modal-body">
+          <h3>PROGRAMA:</h3>
+          <select id="programa" name="programa">
+            <option value="%">--Cualquier programa--</option>
+          </select>
+          <h3>ESCUELA:</h3>
+          <select id="escuela" name="escuela">
+            <option value="%">--Cualquier escuela--</option>
+          </select>
+          <h3>SEXO:</H3>
+          <select id="sexo" name="sexo">
+            <option value="%">--Cualquier sexo--</option>
+            <option value="1">Masculino</option>
+            <option value="0">Femenino</option>
+            <option value="2">Otro</option>
+          </select>
+          <h3>RANGO DE EDADES:</h3>
+          <div class="select-container">
+            <select id="edad-min" name="sexo" class="select-small">
+            </select>
+            <span>-</span>
+            <select id="edad-max" name="sexo" class="select-small">
+            </select>
+          </div>
+          <div class="button-container">
+            <button id="filtrar">Filtrar</button>
+            <button id="quitar-filtros">Quitar filtros</button>
+          </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+
     <script>window.$ = document.querySelectorAll.bind(document);</script>
     <script src="../../../node_modules/chart.js/dist/Chart.min.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="../../js/auth.js"></script>
     <script src="js/get-data.js"></script>
+    <script src="../js/statpage-main.js"></script>
+    <script src="../js/filters.js"></script>
   </body>
 </html>

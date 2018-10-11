@@ -13,37 +13,80 @@ db.get('PRAGMA foreign_keys = ON');
 let sqlQueries = [];
 
 function generateRandomID() {
-  return Math.round(Math.random() * Math.pow(10, 18));
+  return Math.round(Math.random() * Math.pow(10, 15));
 }
 
-function getStat(data, callback) {
+function getStat(data, programa, escuela, sexo, edadMin, edadMax, callback) {
   switch(data) {
+    case 'universo':
+      db.all(sqlQueries['reportes/Universo'], {
+        '@programa': programa,
+        '@escuela': escuela,
+        '@sexo': sexo,
+        '@edadMin': edadMin,
+        '@edadMax': edadMax
+      }, function(err, rows) {
+        if(err) callback('ERROR al correr reportes/Unverso.sql: ' + err);
+        else callback(null, rows);
+      });
+      break;
     case 'edades':
-      db.all(sqlQueries['reportes/Edades'], function(err, rows) {
+      db.all(sqlQueries['reportes/Edades'], {
+        '@programa': programa,
+        '@escuela': escuela,
+        '@sexo': sexo,
+        '@edadMin': edadMin,
+        '@edadMax': edadMax
+      }, function(err, rows) {
         if(err) callback('ERROR al correr reportes/Edades.sql: ' + err);
         else callback(null, rows);
       });
       break;
     case 'estudios':
-      db.all(sqlQueries['reportes/Estudios'], function(err, rows) {
+      db.all(sqlQueries['reportes/Estudios'], {
+        '@programa': programa,
+        '@escuela': escuela,
+        '@sexo': sexo,
+        '@edadMin': edadMin,
+        '@edadMax': edadMax
+      }, function(err, rows) {
         if(err) callback('ERROR al correr reportes/Estudios.sql: ' + err);
         else callback(null, rows);
       });
       break;
     case 'ocupacion-futura':
-      db.all(sqlQueries['reportes/OcupacionFutura'], function(err, rows) {
+      db.all(sqlQueries['reportes/OcupacionFutura'], {
+        '@programa': programa,
+        '@escuela': escuela,
+        '@sexo': sexo,
+        '@edadMin': edadMin,
+        '@edadMax': edadMax
+      }, function(err, rows) {
         if(err) callback('ERROR al correr reportes/OcupacionFutura.sql: ' + err);
         else callback(null, rows);
       });
       break;
     case 'admiracion':
-      db.all(sqlQueries['reportes/Admiracion'], function(err, rows) {
+      db.all(sqlQueries['reportes/Admiracion'], {
+        '@programa': programa,
+        '@escuela': escuela,
+        '@sexo': sexo,
+        '@edadMin': edadMin,
+        '@edadMax': edadMax
+      }, function(err, rows) {
+        console.log(rows);
         if(err) callback('ERROR al correr reportes/Admiracion.sql: ' + err);
         else callback(null, rows);
       });
       break;
     case 'juego-favorito':
-      db.all(sqlQueries['reportes/JuegoFavorito'], function(err, rows) {
+      db.all(sqlQueries['reportes/JuegoFavorito'], {
+        '@programa': programa,
+        '@escuela': escuela,
+        '@sexo': sexo,
+        '@edadMin': edadMin,
+        '@edadMax': edadMax
+      }, function(err, rows) {
         if(err) callback('ERROR al correr reportes/JuegoFavorito.sql: ' + err);
         else callback(null, rows);
       });
@@ -436,6 +479,7 @@ function readQueries(callback) {
     'InsertPrograma',
     'InsertEscuela',
     'InsertLlave',
+    'reportes/Universo',
     'reportes/Edades',
     'reportes/Estudios',
     'reportes/OcupacionFutura',
