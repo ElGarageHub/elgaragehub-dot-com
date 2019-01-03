@@ -1,11 +1,9 @@
 .cover {
   background-image: url('../media/cover.png');
   width: 100%;
-  height: 25vw;
-  background-attachment: fixed;
-  background-position: center;
+  height: 37vw;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
 }
 
 @media (min-width: 992px) {
