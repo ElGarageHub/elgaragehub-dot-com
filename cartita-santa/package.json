@@ -1,0 +1,23 @@
+{
+  "name": "cartita-santa",
+  "version": "1.0.0",
+  "description": "Website para escribir tu cartita a Santa.",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JavierRizzoA/CartitaSanta.git"
+  },
+  "author": "Javier Rizzo Aguirre",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JavierRizzoA/CartitaSanta/issues"
+  },
+  "homepage": "https://github.com/JavierRizzoA/CartitaSanta#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  }
+}

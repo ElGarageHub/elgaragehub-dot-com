@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cartita a Santa El Garage Project Hub</title>
+    <link rel="stylesheet" href="https://unpkg.com/huleos.css/css/huleos.css">
+    <link rel="stylesheet" href="src/assets/css/general.css">
+  </head>
+  <body>
+    <header class="o-flex o-flex--middle o-flex--center">
+      <img class="imageFix" src="src/assets/img/cartita-santa.jpg" alt="Header" />
+    </header>
+    <div class="o-container--full u-px0">
+      <div id="particles-js"></div>
+      <div id="modalOk" class="c-modal">
+        <div class="c-modal__container">
+          <h2 class="u-mb0">¡Tu Cartita fue enviada al Taller de Santa! 🎅🎄</h2>
+          <button type="button" class="c-modal__close" aria-label="close" onclick="modalOk.style.display = 'none';">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+      <div id="modalErr" class="c-modal">
+        <div class="c-modal__container">
+          <h2 class="u-mb0">Ocurrió un error al enviar tu cartita. Inténtalo más tarde 😞.</h2>
+          <button type="button" class="c-modal__close" aria-label="close" onclick="modalErr.style.display = 'none';">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+      <div class="o-flex o-flex--justify o-flex--center o-flex--middle o-container--md u-px0 u-pt2">
+        <div class="o-flex o-flex--left o-flex--middle o-flex--center">
+          <h3 class="u-mb0 u-mr1 u-text-white">Manda tu cartita</h3>
+          <button class="c-button c-button-santa" type="" onclick="sendCanvasImg();">Ho-Ho-Ho</button>
+        </div>
+        <div>
+          <button class="c-button c-button-warning" type="", onclick="clearCanvas();">Borra Todo</button>
+        </div>
+      </div>
+      <div class="o-flex o-flex--middle o-flex--center o-container--md u-p2 u-pb4">
+        <canvas id="can" class="" width="800px" height="1200px">
+        </canvas>
+      </div>
+    </div>
+    <footer class="o-flex o-flex--middle o-flex--center">
+      <img class="imageFix" src="src/assets/img/footer-cartita.jpg" alt="Header" />
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="src/assets/js/index.js"></script>
+    <script src="src/assets/js/draw.js"></script>
+    <script src="src/assets/js/send-img.js"></script>
+
+    <div style="display:none; white-space:nowrap; font:15px courier; line-height:0;"> &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; </div>
+
+  </body>
+</html>
