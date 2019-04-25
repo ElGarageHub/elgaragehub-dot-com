@@ -369,5 +369,25 @@ table.talleres {
 
 button {
   font-family: Xolonium, sans-serif;
-  height: 30px;
+}
+
+@font-face {
+  font-family: "Rebrush";
+  src: url(../font/Rebrush.ttf);
+}
+
+button {
+  background-color: #0f5186;
+  border: 3px solid #0f5186;
+  border-radius: 3px;
+  padding: .5rem 1.5rem;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+  height: auto;
+}
+
+button:hover {
+  background-color: white;
+  color: #0f5186;
 }

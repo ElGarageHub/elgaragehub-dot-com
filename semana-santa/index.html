@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta name="description" content="Talleres de El Garage Project Hub. 6 talleres distintos con metodología STEAM y Design Thinking." />
+    <meta name="description" content="Talleres de Semana Santa de El Garage Project Hub. Una semana intensiva, 3 talleres distintos con metodología STEAM y Design Thinking." />
     <meta name="author" content="El Garage Project Hub" />
-    <meta name="keywords" content="garage, makerspace, educativo, talleres, tecnología, STEAM, verano" />
-    <meta property="og:title" content="Talleres | El Garage Project Hub" />
+    <meta name="keywords" content="garage, makerspace, educativo, talleres, tecnología, STEAM, semana santa" />
+    <meta property="og:title" content="Semana Santa | El Garage Project Hub" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="http://www.elgaragehub.com/2018/verano" />
-    <meta property="og:image" content="http://elgaragehub.com/media/logo.svg" />
-    <meta property="og:description" content="Talleres de El Garage Project Hub. 6 talleres distintos con metodología STEAM y Design Thinking." /> 
+    <meta property="og:url" content="http://www.elgaragehub.com/semana-santa" />
+    <meta property="og:image" content="http://elgaragehub.com/media/logo.png" />
+    <meta property="og:description" content="Talleres de Semana Santa de El Garage Project Hub. Una semana intensiva, 3 talleres distintos con metodología STEAM y Design Thinking." /> 
 
     <meta name="theme-color" content="#2C395D">
     <meta name="msapplication-navbutton-color" content="#2C395D">
@@ -35,7 +35,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="../../media/favicon/ms-icon-144x144.png">
 
-    <title>Talleres | El Garage Project Hub</title>
+    <title>Semana Santa | El Garage Project Hub</title>
 
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="../../node_modules/animate.css/animate.min.css" />
@@ -49,12 +49,44 @@ gtag('js', new Date());
 
 gtag('config', 'UA-119806662-1');
     </script>
+    <style>
+h1, h2, h3 {
+  color: #df3000;
+  font-size: 200%;
+}
+
+.column3 .fas, .column3 .fab {
+  color: #0f5186;
+}
+
+a, a:active, a:visited, a:hover, a:link {
+  color: #0f5186;
+}
+
+.badge {
+  background-color: #0f5186;
+  color: #FFF;
+}
+
+.badge i.fas {
+  color: #FFF;
+}
+
+.modal-body {
+  color: #000000;
+}
+
+.modal-header {
+  background-color: #0f5186;
+}
+    </style>
   </head>
   <body>
     <div class="cover"></div>
     <div class="container">
-      <h1>TALLERES EN GARAGE HUB</h1>
-      <p>Todos los talleres inician la semana del <strong>14 de enero</strong>.</p>
+      <h1>TALLERES DE SEMANA SANTA EN GARAGE HUB</h1>
+      <p>Del <strong>lunes 15</strong> al <strong>viernes 19 de abril</strong> de 2019, <strong>turnos matutino y vespertino</strong>.</p>
+      <p>Una <strong>semana intensiva</strong> en la que desarrollarán <strong>proyectos</strong> de acuerdo a los siguientes <strong>talleres</strong>:</p>
     </div>
     <div class="container">
       <div class="column">
@@ -62,35 +94,17 @@ gtag('config', 'UA-119806662-1');
           <tr>
             <td><div class="badge"><i class="fas fa-robot fa-2x"></i></div></td>
             <td>
-              <h2>LEGO ROBÓTICA BÁSICO</h2>
-              <p>Viernes 18:00 - 20:00</p>
-              <p>Inicio: 18 de enero</p>
-            </td>
-          </tr>
-          <tr>
-            <td><div class="badge"><i class="fas fa-robot fa-2x"></i></div></td>
-            <td>
-              <h2>LEGO ROBÓTICA INTERMEDIO</h2>
-              <p>Lunes 17:00 - 19:00</p>
-              <p>Inicio: 14 de enero</p>
-            </td>
-          </tr>
-          <tr>
-            <td><div class="badge"><i class="fas fa-robot fa-2x"></i></div></td>
-            <td>
               <h2>LEGO ROBÓTICA CLUB</h2>
-              <p>Viernes 17:00 - 20:00</p>
-              <p>Inicio: 18 de enero</p>
-              <button class="btn-legoclub" id="legoclub-btn">Más información.</button>
+              <br>
+              <button class="btn-legoclub" id="legoclub-btn">MÁS INFORMACIÓN</button>
             </td>
           </tr>
           <tr>
             <td><div class="badge"><i class="fas fa-wrench fa-2x"></i></div></td>
             <td>
               <h2>MAKER LAB</h2>
-              <p>Martes 18:00 - 20:00</p>
-              <p>Inicio: 15 de enero</p>
-              <button class="btn-makerlab" id="makerlab-btn">Más información.</button>
+              <br>
+              <button class="btn-makerlab" id="makerlab-btn">MÁS INFORMACIÓN</button>
             </td>
           </tr>
         </table>
@@ -98,30 +112,11 @@ gtag('config', 'UA-119806662-1');
       <div class="column">
         <table class="talleres">
           <tr>
-            <td><div class="badge"><i class="fas fa-terminal fa-2x"></i></div></td>
-            <td>
-              <h2>APPLE CODING</h2>
-              <p>Miércoles 18:00 - 20:00</p>
-              <p>Inicio: 16 de enero</p>
-              <button class="btn-applecoding" id="applecoding-btn">Más información.</button>
-            </td>
-          </tr>
-          <tr>
             <td><div class="badge"><i class="fas fa-rocket fa-2x"></i></div></td>
             <td>
               <h2>CIENCIA ESPACIAL</h2>
-              <p>Jueves 17:00 - 19:00</p>
-              <p>Inicio: 17 de enero</p>
-              <button class="btn-cienciaespacial" id="cienciaespacial-btn">Más información.</button>
-            </td>
-          </tr>
-          <tr>
-            <td><div class="badge"><i class="fas fa-toolbox fa-2x"></i></div></td>
-            <td>
-              <h2>PROYECTOS MAKER</h2>
-              <p>Sábados 10:00 - 13:00</p>
-              <p>Inicio: 19 de enero</p>
-              <button class="btn-proyectosmaker" id="proyectosmaker-btn">Más información.</button>
+              <br>
+              <button class="btn-cienciaespacial" id="cienciaespacial-btn">MÁS INFORMACIÓN</button>
             </td>
           </tr>
         </table>
@@ -130,9 +125,14 @@ gtag('config', 'UA-119806662-1');
     <div class="container">
       <div class="column2">
         <h2>DURACIÓN:</h2>
-        <p>5 meses (terminan en mayo).</p>
+        <p>Una semana intensiva <strong>del lunes 15 al viernes 19 de abril</strong>.</p>
+        <h2>HORARIO:</h2>
+        <ul>
+          <li>Turno matutino: <strong>8:00 a 13:00 hrs</strong>.</li>
+          <li>Turno vespertino: <strong>14:00 a 19:00 hrs</strong>.</li>
+        </ul>
         <h2>COSTO:</h2>
-        <p>$850.00 M.N. mensuales.</p>
+        <p>$1,100 M.N.</p>
         <p>No necesitan traer material ni tener experiencia previa.</p>
         <p>Inscripción en contaloría de Universidad 16 de Septiembre.</p>
       </div>
@@ -140,7 +140,7 @@ gtag('config', 'UA-119806662-1');
         <h2>EDADES:</h2>
         <p>7 a 15 años</p>
         <h2>REGISTRO DE INTERESADOS</h2>
-        <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSf0tocSDLW5G-8cirVPeQyruTJjE09Hl-OOU-DJYC747sOg3g/viewform">Link</a>.</p>
+        <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSc12Y4h8bx16M2Ziz-b1EoERFpEA9tt-PqjfiCMecYbJ-dllA/viewform?usp=sf_link">Link</a>.</p>
         <h2>BECAS:</h2>
         <p>Revisa <a href="https://drive.google.com/file/d/1bk4zjKWMSxkUbTaHYtzsnSCxIHwQxEXk/view">nuestras becas</a>.</p>
       </div>
@@ -165,7 +165,7 @@ gtag('config', 'UA-119806662-1');
         </iframe>
       </div>
     </div>
-    <div class="section blue footer">
+    <div class="section footer">
       <div class="cuadros-footer">
         <a class="anodec" href="http://elgaragehub.com/"><img class="logo-font" src="../../media/logo-font.svg" alt="El Garage Project Hub"></a>
         <a class="anodec" href="https://facebook.com/elgarageprojecthub/"><i class="fab fa-facebook fa-2x socialmedia" aria-hidden="true"></i></a>

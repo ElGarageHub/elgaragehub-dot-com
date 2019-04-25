@@ -79,10 +79,8 @@ $('.badge').forEach(function(el) {
 
 var modals = [
   'makerlab',
-  'applecoding',
   'cienciaespacial',
-  'legoclub',
-  'proyectosmaker'
+  'legoclub'
 ];
 modals.forEach(function(modal) {
   var div = $('#' + modal + '-modal')[0];
