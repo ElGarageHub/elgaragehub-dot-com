@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="description" content="El Garage Project Hub es un Makerspace con motivos tanto Educativos como Industriales y que cuenta con servicios de impresión 3D, corte con láser, y talleres." />
+    <meta name="author" content="El Garage Project Hub" />
+    <meta name="keywords" content="garage, makerspace, educativo, industrial, impresion 3d, corte con láser, talleres, tecnología" />
+    <meta property="og:title" content="El Garage Project Hub" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://www.elgaragehub.com/" />
+    <meta property="og:image" content="http://javierrizzo.com/elgarage/media/logo.svg" />
+    <meta property="og:description" content="El Garage Project Hub es un Makerspace con motivos tanto Educativos como Industriales y que cuenta con servicios de impresión 3D, corte con láser, y talleres." /> 
+
+    <meta name="theme-color" content="#2C395D">
+    <meta name="msapplication-navbutton-color" content="#2C395D">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#2C395D">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="../../../media/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../../../media/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="../../../media/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../../../media/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="../../../media/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../../../media/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="../../../media/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../../../media/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../media/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="../../../media/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../media/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="../../../media/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../media/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../../../media/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="../../../media/favicon/ms-icon-144x144.png">
+
+    <title>Estadísticas | Registro | El Garage Project Hub</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../../node_modules/font-awesome/css/font-awesome.min.css" media="none" onload="if(media!='all')media='all'" />
+
+    <meta name="google-signin-client_id" content="326776711119-8f7t8s12tvovim6d4mtlurghli6k6sde.apps.googleusercontent.com">
+  </head>
+  <body>
+    <div class="container">
+      <div class="g-signin2" data-onsuccess="onSignIn" style="margin-left: auto; margin-right: auto; display: block;"></div>
+      <a href="#" onclick="signOut();">Sign out</a>
+      <h1>CREATIVIDAD</h1>
+      <ul class="stat-description">
+        <li>Programa: <span id="stat-description-programa"></span>.</li>
+        <li>Escuela: <span id="stat-description-escuela"></span>.</li>
+        <li>Sexo: <span id="stat-description-sexo"></span>.</li>
+        <li>Rango de edades: <span id="stat-description-edades"></span> años.</li>
+        <li>Total: <span id="stat-description-universo"></span> alumnos.</li>
+        <li><button id="filter-btn"><i class="fa fa-filter" aria-hidden="true"></i> Filtrar</button></li>
+      </ul>
+      <canvas id="chart"></canvas>
+      <canvas id="chart3"></canvas>
+    </div>
+
+    <div id="filter-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>FILTROS</h2>
+          <span class="close">&times;</span>
+        </div>
+        <br>
+        <div class="modal-body">
+          <h3>PROGRAMA:</h3>
+          <select id="programa" name="programa">
+            <option value="%">--Cualquier programa--</option>
+          </select>
+          <h3>ESCUELA:</h3>
+          <select id="escuela" name="escuela">
+            <option value="%">--Cualquier escuela--</option>
+          </select>
+          <h3>SEXO:</H3>
+          <select id="sexo" name="sexo">
+            <option value="%">--Cualquier sexo--</option>
+            <option value="1">Masculino</option>
+            <option value="0">Femenino</option>
+            <option value="2">Otro</option>
+          </select>
+          <h3>RANGO DE EDADES:</h3>
+          <div class="select-container">
+            <select id="edad-min" name="sexo" class="select-small">
+            </select>
+            <span>-</span>
+            <select id="edad-max" name="sexo" class="select-small">
+            </select>
+          </div>
+          <div class="button-container">
+            <button id="filtrar">Filtrar</button>
+            <button id="quitar-filtros">Quitar filtros</button>
+          </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+
+    <script>window.$ = document.querySelectorAll.bind(document);</script>
+    <script src="../../../node_modules/chart.js/dist/Chart.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="../../js/auth.js"></script>
+    <script src="js/get-data.js"></script>
+    <script src="../js/statpage-main.js"></script>
+    <script src="../js/filters.js"></script>
+  </body>
+</html>

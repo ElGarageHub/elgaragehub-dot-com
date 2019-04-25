@@ -16,81 +16,78 @@ function generateRandomID() {
   return Math.round(Math.random() * Math.pow(10, 15));
 }
 
+function queryStat(query, programa, escuela, sexo, edadMin, edadMax, callback) {
+  db.all(sqlQueries[query], {
+    '@programa': programa,
+    '@escuela': escuela,
+    '@sexo': sexo,
+    '@edadMin': edadMin,
+    '@edadMax': edadMax
+  }, function(err, rows) {
+    if(err) callback('ERROR al correr ' + query + '.sql: ' + err);
+    else callback(null, rows);
+  });
+}
+
 function getStat(data, programa, escuela, sexo, edadMin, edadMax, callback) {
   switch(data) {
     case 'universo':
-      db.all(sqlQueries['reportes/Universo'], {
-        '@programa': programa,
-        '@escuela': escuela,
-        '@sexo': sexo,
-        '@edadMin': edadMin,
-        '@edadMax': edadMax
-      }, function(err, rows) {
-        if(err) callback('ERROR al correr reportes/Unverso.sql: ' + err);
-        else callback(null, rows);
-      });
+      queryStat('reportes/Universo', programa, escuela, sexo, edadMin, edadMax, callback);
+      break;
+    case 'comunidad-segura':
+      queryStat('reportes/ComunidadSegura', programa, escuela, sexo, edadMin, edadMax, callback);
+      break;
+    case 'parentescos':
+      queryStat('reportes/Parentescos', programa, escuela, sexo, edadMin, edadMax, callback);
+      break;
+    case 'numerofamiliares':
+      queryStat('reportes/NumeroFamiliares', programa, escuela, sexo, edadMin, edadMax, callback);
       break;
     case 'edades':
-      db.all(sqlQueries['reportes/Edades'], {
-        '@programa': programa,
-        '@escuela': escuela,
-        '@sexo': sexo,
-        '@edadMin': edadMin,
-        '@edadMax': edadMax
-      }, function(err, rows) {
-        if(err) callback('ERROR al correr reportes/Edades.sql: ' + err);
-        else callback(null, rows);
-      });
+      queryStat('reportes/Edades', programa, escuela, sexo, edadMin, edadMax, callback);
       break;
     case 'estudios':
-      db.all(sqlQueries['reportes/Estudios'], {
-        '@programa': programa,
-        '@escuela': escuela,
-        '@sexo': sexo,
-        '@edadMin': edadMin,
-        '@edadMax': edadMax
-      }, function(err, rows) {
-        if(err) callback('ERROR al correr reportes/Estudios.sql: ' + err);
-        else callback(null, rows);
-      });
+      queryStat('reportes/Estudios', programa, escuela, sexo, edadMin, edadMax, callback);
       break;
     case 'ocupacion-futura':
-      db.all(sqlQueries['reportes/OcupacionFutura'], {
-        '@programa': programa,
-        '@escuela': escuela,
-        '@sexo': sexo,
-        '@edadMin': edadMin,
-        '@edadMax': edadMax
-      }, function(err, rows) {
-        if(err) callback('ERROR al correr reportes/OcupacionFutura.sql: ' + err);
-        else callback(null, rows);
-      });
+      queryStat('reportes/OcupacionFutura', programa, escuela, sexo, edadMin, edadMax, callback);
       break;
     case 'admiracion':
-      db.all(sqlQueries['reportes/Admiracion'], {
-        '@programa': programa,
-        '@escuela': escuela,
-        '@sexo': sexo,
-        '@edadMin': edadMin,
-        '@edadMax': edadMax
-      }, function(err, rows) {
-        console.log(rows);
-        if(err) callback('ERROR al correr reportes/Admiracion.sql: ' + err);
-        else callback(null, rows);
-      });
+      queryStat('reportes/Admiracion', programa, escuela, sexo, edadMin, edadMax, callback);
       break;
     case 'juego-favorito':
-      db.all(sqlQueries['reportes/JuegoFavorito'], {
-        '@programa': programa,
-        '@escuela': escuela,
-        '@sexo': sexo,
-        '@edadMin': edadMin,
-        '@edadMax': edadMax
-      }, function(err, rows) {
-        if(err) callback('ERROR al correr reportes/JuegoFavorito.sql: ' + err);
-        else callback(null, rows);
-      });
+      queryStat('reportes/JuegoFavorito', programa, escuela, sexo, edadMin, edadMax, callback);
       break;
+    case 'persona-violenta':
+      queryStat('reportes/PersonaViolenta', programa, escuela, sexo, edadMin, edadMax, callback);
+      break;
+    case 'tipo-violencia-practicada':
+      queryStat('reportes/TipoViolenciaPracticada', programa, escuela, sexo, edadMin, edadMax, callback);
+      break;
+    case 'tipo-violencia-victima':
+      queryStat('reportes/TipoViolenciaVictima', programa, escuela, sexo, edadMin, edadMax, callback);
+      break;
+    case 'victima-violencia':
+      queryStat('reportes/VictimaViolencia', programa, escuela, sexo, edadMin, edadMax, callback);
+      break;
+    case 'problemas-familia':
+      queryStat('reportes/ProblemasFamilia', programa, escuela, sexo, edadMin, edadMax, callback);
+      break;
+    case 'temas-interes':
+      queryStat('reportes/TemasInteres', programa, escuela, sexo, edadMin, edadMax, callback);
+      break;
+    case 'tecnologias-casa':
+      queryStat('reportes/TecnologiasCasa', programa, escuela, sexo, edadMin, edadMax, callback);
+			break;
+    case 'tecnologias-escuela':
+      queryStat('reportes/TecnologiasEscuela', programa, escuela, sexo, edadMin, edadMax, callback);
+			break;
+    case 'persona-creativa':
+      queryStat('reportes/PersonaCreativa', programa, escuela, sexo, edadMin, edadMax, callback);
+			break;
+    case 'crear-robot':
+      queryStat('reportes/CrearRobot', programa, escuela, sexo, edadMin, edadMax, callback);
+			break;
   }
 }
 
@@ -484,7 +481,20 @@ function readQueries(callback) {
     'reportes/Estudios',
     'reportes/OcupacionFutura',
     'reportes/Admiracion',
-    'reportes/JuegoFavorito'
+    'reportes/JuegoFavorito',
+    'reportes/NumeroFamiliares',
+    'reportes/Parentescos',
+    'reportes/ComunidadSegura',
+    'reportes/PersonaViolenta',
+    'reportes/TipoViolenciaPracticada',
+    'reportes/TipoViolenciaVictima',
+    'reportes/VictimaViolencia',
+    'reportes/ProblemasFamilia',
+    'reportes/TemasInteres',
+    'reportes/TecnologiasCasa',
+    'reportes/TecnologiasEscuela',
+    'reportes/PersonaCreativa',
+    'reportes/CrearRobot'
   ].forEach(function(query, index, array) {
     fs.readFile('sql/' + query + '.sql', 'utf8', function(err, data) {
       if(err) {

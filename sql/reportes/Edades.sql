@@ -1,8 +1,7 @@
 SELECT
   E.edad
   ,m
-  ,f
-  ,o
+  ,f ,o
 FROM
   ((SELECT DISTINCT
     edad
