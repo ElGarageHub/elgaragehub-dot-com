@@ -6,7 +6,7 @@ body {
 }
 
 body#maker {
-  background-color: rgb(44, 57, 93);
+  background-color: #0f5186;
   height: 100%;
   font-size: 14px;
 }
@@ -106,7 +106,7 @@ body#maker {
   height: 100vh;
   overflow: hidden;
   position: relative;
-  background-color: rgb(44, 57, 93);
+  background-color: #0f5186;
 }
 
 @media(orientation:landscape) {
@@ -282,13 +282,13 @@ strong {
   text-align: center;
   padding-top: 10vh;
   padding-bottom: 10vh;
-  color: rgb(44, 57, 93);
+  color: #0f5186;
 }
 
 .column2 {
   vertical-align: top;
   text-align: center;
-  color: rgb(44, 57, 93);
+  color: #0f5186;
 }
 
 .column3 {
@@ -360,7 +360,7 @@ h2 {
 }
 
 .blue {
-  background-color: rgb(44, 57, 93);
+  background-color: #0f5186;
 }
 
 .servicios {
@@ -448,7 +448,7 @@ h3 {
 }
 
 .makerspace h2, .makerspace h3 {
-  color: rgb(44, 57, 93);
+  color: #0f5186;
   margin-bottom: 0;
 }
 
@@ -457,7 +457,7 @@ h3 {
 }
 
 .ciencia h2 {
-  color: rgb(44, 57, 93);
+  color: #0f5186;
 }
 
 .ciencia {
@@ -522,7 +522,7 @@ h3 {
 }
 
 .aliados h2 {
-  color: rgb(44, 57, 93);
+  color: #0f5186;
 }
 
 .aliados {
@@ -659,7 +659,7 @@ button:focus, input:focus, textarea:focus {
 
 .modal-header {
     padding: 2px 16px;
-    background-color: rgb(44, 57, 93);
+    background-color: #0f5186;
     color: white;
 }
 
@@ -671,11 +671,11 @@ button:focus, input:focus, textarea:focus {
 .modal-body {
   padding: 2px 16px;
   padding-bottom: 20px;
-  color: rgb(44, 57, 93);
+  color: #0f5186;
 }
 
 .modal-footer {
-    background-color: rgb(44, 57, 93);
+    background-color: #0f5186;
     color: white;
 }
 
