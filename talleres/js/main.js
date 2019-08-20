@@ -83,7 +83,9 @@ var modals = [
   'cienciaespacial',
   'legoclub',
   'proyectosmaker',
-  'contenidodigital'
+  'contenidodigital',
+  'roboticaintermedio',
+  'roboticabasica'
 ];
 modals.forEach(function(modal) {
   var div = $('#' + modal + '-modal')[0];
